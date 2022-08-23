@@ -16,7 +16,7 @@
       - Real-World SQL Interview questions for Data Analysts to help you get the best job possible.
 * **Data Manipulation**
   - This folder includes the following components:
-      - Pandas, Tableau Prep, and Altryx tutorials for beginners.
+      - Pandas, Tableau Prep, and Alteryx tutorials for beginners.
       - Data Manipulation challenges to enhance your understanding of the various techniques.
       - Guidelines for effective and efficient data manipulation between tools.
       - Real-World projects to introduce you to the new world of Analytics Engineering.
