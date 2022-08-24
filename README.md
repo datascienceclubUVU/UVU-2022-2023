@@ -26,13 +26,12 @@
       
 * **Web Development**
    - This folder includes the following components:
-      - Introduction to the idea of Supervised vs. Unsupervised Machine Learning.
-      - TensorFlow, PyTorch, and SageMaker Tutorials.
-      - Real-World Projects for creating robust Image Recognition, Clustering, and Natural Lanuguage Processing Models.
-      - Resources to interact with industry professionals to learn more about how large orgs use Machine Learning Models.
+      - HTML, CSS, JavaScript, ReactJS, and Web API Tutorials.
+      - Real-World Projects for creating awesome websites to show off to employers.
+      - Resources to learn more about how web development can be automated.
 
  * **UI/UX Engineering**
    - This folder includes the following components:
-      - Brief overview of how statistics is used in the creation and implementation of various Data Science techniques.
-      - R, Regression, Cluster Analytics, and other Statistics-related Tutorials.
-      - Real-World projects to help you reinforce your knowledge in Statistics and Algorithmic thinking.
+      - Introduction to the core concepts of UI/UX Engineering.
+      - NodeJS, Web Modeling, Agile & Waterfall SDLC, and Project Management Tutorials.
+      - Real-World projects to help you expand your knowledge in the field of UI/UX Engineering.
