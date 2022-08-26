@@ -22,6 +22,6 @@
       - Real-World projects to introduce you to the new world of Analytics Engineering.
 * **Advanced Topics**
   - This folder includes the following components:
-      - Tutorials related to advanced analytic programming languages including R, Advanced Python, and Scala.
+      - Tutorials related to advanced analytic programming languages such as R.
       - Resources to further your understanding of Big Data Analytics.
       - Real-World projects aimed towards more senior students who want to prepare for interviews.
