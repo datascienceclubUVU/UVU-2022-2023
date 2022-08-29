@@ -1,5 +1,11 @@
 # Welcome to the UVU Data Science Club 2022-23!
 
+## **_WEEKLY MEETING INFORMATION_**
+### WHEN: Wednesdays @ 7:00 PM 
+### WHERE: CS 615
+### WHO: YOU! (and your friends ;)
+### WHAT: (see below)
+
 #### This repository is a central location for collaborating on projects and delegating tasks. If you have any questions regarding current projects, project responsibilities, or would like to propose a new project, please send Chase a message via Slack.
 ## ~ CONTENTS ~
 ###  _BRANCHES_:
