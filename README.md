@@ -4,7 +4,11 @@
 ### WHEN: Wednesdays @ 7:00 PM 
 ### WHERE: CS 615
 ### WHO: YOU! (and your friends ;)
-### WHAT: (see below)
+### WHAT: (see "Contents" section below)
+
+###
+### CONTACT INFO: SLACK: [uvudatascienceclub.slack.com](uvudatascienceclub.slack.com) |  EMAIL: uvudataclub@gmail.com
+
 
 #### This repository is a central location for collaborating on projects and delegating tasks. If you have any questions regarding current projects, project responsibilities, or would like to propose a new project, please send Chase a message via Slack.
 ## ~ CONTENTS ~
