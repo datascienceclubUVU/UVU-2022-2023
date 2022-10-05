@@ -1,3 +1,11 @@
+'''
+Python libraries allow users to extend the abilities of the language compiler. For this project, I will be using the following libraries:
+- pandas and numpy (for data analysis and manipulation)
+- streamlit and plotly (for UI design and data visualization)
+- pyodbc and spotipy (for Spotify API and SQL Server connections)
+'''
+
+
 # import libraries
 
 from random import seed
