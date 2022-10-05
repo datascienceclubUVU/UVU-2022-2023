@@ -254,6 +254,7 @@ with st.expander('Song Recommendations'):
     final_df = final_df[['Track Name', 'Artist Name', 'likeness', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
     final_df = final_df.drop_duplicates()
     final_df = final_df.sort_values(by=['likeness'], ascending=False)
+    final_df = final_df.reset_index()
     final_df = final_df.style.applymap(highlight_colors, color_if_true='#5EFF33', color_if_false='white', subset=['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence'])
     st.subheader('Recommendations (by likeness)')
     st.dataframe(final_df)
