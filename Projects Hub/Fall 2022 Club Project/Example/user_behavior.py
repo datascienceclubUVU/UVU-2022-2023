@@ -212,14 +212,39 @@ with st.expander('Song Recommendations'):
     # create new field to calculate likeness for song metrics
     
     for row in final_df:
-        likeness1 = (result_df['acousticness'][0]/final_df['acousticness'])*100
-        likeness2 = (result_df['danceability'][0]/final_df['danceability'])*100
-        likeness3 = (result_df['energy'][0]/final_df['energy'])*100
-        likeness4 = (result_df['instrumentalness'][0]/final_df['instrumentalness'])*100
-        likeness5 = (result_df['liveness'][0]/final_df['liveness'])*100
-        likeness6 = (result_df['valence'][0]/final_df['valence'])*100
+        if result_df['acousticness'] > final_df['acousticness']:
+            likeness1 = (final_df['acousticness']/result_df['acousticness'])*100
+        else:
+            likeness1 = (result_df['acousticness']/final_df['acousticness'])*100
+        
+        if result_df['danceability'] > final_df['danceability']:
+            likeness2 = (final_df['danceability']/result_df['danceability'])*100
+        else:
+            likeness2 = (result_df['danceability']/final_df['danceability'])*100
+        
+        if result_df['energy'] > final_df['energy']:
+            likeness3 = (final_df['energy']/result_df['energy'])*100
+        else:
+            likeness3 = (result_df['energy']/final_df['energy'])*100
+        
+        if result_df['instrumentalness'] > final_df['instrumentalness']:
+            likeness4 = (final_df['instrumentalness']/result_df['instrumentalness'])*100
+        else:
+            likeness4 = (result_df['instrumentalness']/final_df['instrumentalness'])*100
+            
+        if result_df['liveness'] > final_df['liveness']:
+            likeness5 = (final_df['liveness']/result_df['liveness'])*100
+        else:
+            likeness5 = (result_df['liveness']/final_df['liveness'])*100
+            
+        if result_df['valence'] > final_df['valence']:
+            likeness6 = (final_df['valence']/result_df['valence'])*100
+        else:
+            likeness6 = (result_df['valence']/final_df['valence'])*100
+        
         likeness_metrics = [likeness1, likeness2, likeness3, likeness4, likeness5, likeness6]
-        final_df['likeness'] = round(sum(likeness_metrics)/6, 2)
+        likeness_metrics = sum(likeness_metrics)/6
+        final_df['likeness'] = likeness_metrics
     final_df['acousticness'] = round(final_df['acousticness'].astype(float), 3)
     final_df['danceability'] = round(final_df['danceability'].astype(float), 3)
     final_df['energy'] = round(final_df['energy'].astype(float), 3)
