@@ -13,11 +13,10 @@
 8. Create API to Allow Users to Use the App.
 9. Train Our Model Using the Training Dataset.
 10. Test and Validate Our Model Using the Testing Dataset.
-11. Create Event Streaming Pipeline.
-12. Gather Event Data.
-13. Create ETL Pipeline to Get the Event Data, Transform it to a Useful Format, and Load into the Reporting Dashboard (see next step).
-14. Create Reporting Dashboard to Visualize Our App's Engagement Metrics.
-15. Create API to Connect the Event Streaming Pipeline to Our Reporting Dashboard.
+11. Create an Event Streaming Pipeline to Gather User Engagement Data.
+12. Create ETL Pipeline to Get the Event Data, Transform it to a Useful Format, and Load into the Reporting Dashboard (see Step 15).
+13. Create API to Connect the Event Streaming Pipeline to Our Reporting Dashboard.
+15. Create Reporting Dashboard to Visualize Our App's Engagement Metrics.
 ### Tools
 #### In order to complete the steps as listed above, we will be using the following tools:
     * APIs
@@ -37,17 +36,20 @@
           * Responsibilities:
                     - Create Connection to Spotify API.
                     - Design Front-End Web App.
-                    - Create the CI/CD pipeline.
-                    - Deploy the Streamlit App.
+                    - Create API for External Use.
+                    - Create Event Streaming API.
     * DATA ENGINEERING TEAM:
           * Responsibilities: 
-                    - Design and Implement Data Warehouse.
                     - Design and Implement ETL Pipeline.
                     - Load Data into Data Warehouse.
                     - Create Training and Testing Datasets.
+                    - Create Event Streaming Pipeline.
+                    - Design and Implement User Engagement ETL Pipeline.
     * DATA SCIENCE TEAM:
           * Responsibilities:
                     - Design and Build ML Model.
+                    - Train ML Model.
+                    - Test and Validate ML Model.
     * DATA ANALYTICS TEAM:
           * Responsibilities:
                     - Design and Implement Data Warehouse.
