@@ -53,6 +53,8 @@ query['time_signature'] = query['time_signature'].map({'3': '3/4', '4': '4/4', '
 
 query2 = pd.melt(query, id_vars=['uri'], var_name='metrics', value_name='score', value_vars=['instrumentalness', 'danceability', 'energy', 'acousticness', 'valence', 'liveness'])
 
+
+
 # name the app                  
 
 st.set_page_config(page_title='Song Recommendation App', layout='centered')
@@ -97,6 +99,8 @@ st.markdown(""" <style>
                                      padding-left: 30px;}
                         .image { padding-top: 10px;}
                         .streamlit-expanderHeader { font-size: 22px;}
+                        .row_heading.level0 {display:none}
+                        .blank {display:none}
                                   
                 </style>""", unsafe_allow_html=True)
 
@@ -120,6 +124,8 @@ output_mode = query['modal'].loc[(query['track_name'] == track_choice) & (query[
 output_sig = query['time_signature'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
 uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
 
+
+viz_query = query2.loc[query2['uri'] == uri_output]
 
 # create title for main interface
 
@@ -170,9 +176,11 @@ with col3:
 with col4:
     sig_ban = st.markdown(f'''<p class="header4">Time Signature</p><p class="ban-font4">{output_sig}</p>''', unsafe_allow_html=True)
 
-# create data visualization using second query
+# create data visualization using new query from uri output
 
-fig = px.bar_polar(query2.loc[query2['uri'] == uri_output], theta='metrics', r='score', range_r=[0.0,1.0], hover_name='metrics', hover_data={'score':True, 'metrics':False}, width=750, height=600, color_continuous_scale='Sunset', color='score', range_color=[0.0,1.0], template='plotly', title='Song Metrics')
+
+
+fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hover_name='metrics', hover_data={'score':True, 'metrics':False}, width=750, height=600, color_continuous_scale='Sunset', color='score', range_color=[0.0,1.0], template='plotly', title='Song Metrics')
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
@@ -194,8 +202,11 @@ with st.expander('Song Recommendations'):
     result_query = result_query.drop_duplicates()
     result_df = pd.DataFrame(result_query)
     result_df = result_df[['track_name', 'artist_name', 'album_name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence', 'artist_uri', 'uri']]
-    result_df = result_df.drop_duplicates(subset=['track_name'], keep=False)
-    st.dataframe(result_df)
+    if len(result_df) > 1:
+        viz_query['metrics'] = viz_query['metrics']/len(result_df)
+        st.dataframe(result_df)
+    else:
+        st.dataframe(result_df)
     
     
     # get all artist data
