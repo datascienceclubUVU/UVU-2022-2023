@@ -194,7 +194,7 @@ with st.expander('Song Recommendations'):
     result_query = result_query.drop_duplicates()
     result_df = pd.DataFrame(result_query)
     result_df = result_df[['track_name', 'artist_name', 'album_name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence', 'artist_uri', 'uri']]
-    result_df = result_df.drop_duplicates(inplace=True)
+    result_df = result_df.drop_duplicates(keep="first", inplace=True)
     st.dataframe(result_df)
     
     
