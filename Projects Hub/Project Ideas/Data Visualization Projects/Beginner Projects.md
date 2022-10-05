@@ -11,7 +11,7 @@
    - **[kaggle.com](https://www.kaggle.com)**
    - **[Google Dataset Search](https://datasetsearch.research.google.com)**
    - **[Data World](https://data.world/datasets/open-data)**
-### Remove Unncessary Fields
+### Remove Unnecessary Fields
 2. Let's say you are analyzing a sales dataset for a local car deleaership that contains the following fields:
    - dealerID
    - dealerName
@@ -24,3 +24,7 @@
    - customerEmail
    - customerPhoneNum
       - Which Fields do you think would be unnecessary for your Analysis?
+### Download the Data
+3. In order to access the data on your local machine, you need to add it to your local repository (for Windows, File Explorer). To do this, most of the above websites will include download links. If they don't, you can simply copy and paste the data into an empty Excel workbook and use that as your data source.
+### Import the Data into your Data Visualization Tool
+4. For more Specialized tools such as Tableau and Power BI, data sources connectors abound. This allows users, like you, to retrieve data from a multitude of sources including Databases, Cloud Data Warehouses, and, in our case, Text Files. To Import a Dataset into your tool, locate the appropriate Data Source Connector and locate the file or database you'd like to connect.
