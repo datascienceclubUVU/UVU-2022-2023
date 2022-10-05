@@ -5,18 +5,19 @@ Python libraries allow users to extend the abilities of the language compiler. F
 - pyodbc and spotipy (for Spotify API and SQL Server connections)
 '''
 
-
 # import libraries
 
-from random import seed
 from turtle import clear
-import streamlit as st
 import pandas as pd
 import numpy as np
-import pyodbc
+import streamlit as st
 import plotly.express as px
+import pyodbc
+from random import seed
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+
+# define function to highlight output dataframe cells based on value
 
 def highlight_colors(val, color_if_true, color_if_false):
     color = color_if_true if val >= 0.75 and val <= 1.0 else color_if_false
@@ -123,9 +124,15 @@ uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
 # create title for main interface
 
 page_title = st.markdown(f'''<h1 class="title"">Song Recommendation Engine 2.0</h1>''', unsafe_allow_html=True)
+
+# create dropdown menu for app description
+
 st.markdown('<br>', unsafe_allow_html=True)
 with st.expander('Description'):
     st.markdown('''Have you ever wondered how Spotify's Song Recommendation Algorithm works? This app allows you to take a behind-the-scenes look at how Spotify uses your data to recommend songs based on various metrics.''', unsafe_allow_html=True)
+    
+# allow user to preview song and view album cover
+
 st.markdown('<br><br><h4>Song Preview</h4><br><br>', unsafe_allow_html=True)
 
 img_query = pd.json_normalize(sp.track(uri_output), record_path=['album', ['images']])
@@ -143,13 +150,16 @@ with col3:
     album_image = st.markdown(f'<img class= "image" src={img_url} width="125" height="125"></img>', unsafe_allow_html=True)
 with col4:
     st.markdown(f'<p class="track">{track_choice}</p>\n<p class="artist">{artist_choice}</p>', unsafe_allow_html=True)
+    
+# create BANs for data visualizations
+
 col1, col2, col3, col4, col5 = st.columns([1, 2, 1, 1, 1])
 with col1:
     st.text('')
     st.text('')
     st.text('')
     st.text('')
-    filters_txt = st.markdown('<h4>Metrics</h4><br><br>', unsafe_allow_html=True)
+    filters_txt = st.markdown('<h4>Features</h4><br><br>', unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 with col1:
     bpm_ban = st.markdown(f'''<p class="header">BPM</p><p class="ban-font">{output_bpm}</p>''', unsafe_allow_html=True)
@@ -160,12 +170,20 @@ with col3:
 with col4:
     sig_ban = st.markdown(f'''<p class="header4">Time Signature</p><p class="ban-font4">{output_sig}</p>''', unsafe_allow_html=True)
 
+# create data visualization using second query
+
 fig = px.bar_polar(query2.loc[query2['uri'] == uri_output], theta='metrics', r='score', range_r=[0.0,1.0], hover_name='metrics', hover_data={'score':True, 'metrics':False}, width=750, height=600, color_continuous_scale='Sunset', color='score', range_color=[0.0,1.0], template='plotly', title='Song Metrics')
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
+
+# create drop-down menu to display definitions for each metric
+
 with st.expander('Metric Definitions'):
     st.markdown(f'''<h4><b><u>Acousticness</u></b></h4>\nA confidence measure from 0.00 to 1.00 of whether a track is acoustic. 1.0 represents high confidence the track is acoustic.\n\n<h4><b><u>Danceability</u></b></h4>\nThis describes how suitable a track is for dancing based on a combination of musical elements including tempo (BPM), rhythm stability, beat strength, and overall regularity. A value of 0.00 is least danceable and 1.00 is most danceable.\n\n<h4><b><u>Energy</u></b></h4>\nA measure from 0.00 to 1.00 that represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.\n\n<h4><b><u>Instrumentalness</u></b></h4>\nPredicts whether a tracks contains no vocals. "Ooh" and "Aah" sounds are treated as instrumental in this context. The closer the value is to 1.00, the greater likelihood the track contains no vocal content.\n\n<h4><b><u>Liveness</u></b></h4>\nDetects the presence of an audience in the recoding. The great the value is to 1.00, the greater the likelihood that the track was performed live.\n\n<h4><b><u>Valence</u></b></h4>\nA measure from 0.00 to 1.00 describing the musical positiveness by a track. Tracks with high valence (> 0.50) sound more positive, whereas tracks with low valence (< 0.50) sound more negative.\n\n<br><i>* Web API Reference: Get Track Audio Features, Spotify, developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features.</i>''', unsafe_allow_html=True)
+    
+# create drop-down menu to display song recommendations based on user input
+
 with st.expander('Song Recommendations'):
     st.subheader('Your Song')
     result_query = pd.read_sql(f'''SELECT dt.track_name, dt.album_name, da.artist_uri, da.artist_name, af.* 
@@ -181,14 +199,18 @@ with st.expander('Song Recommendations'):
     
     
     # get all artist data
+    
     result_list2 = pd.json_normalize(sp.recommendations(seed_tracks=[result_df['uri'][0]], seed_artists=[result_df['artist_uri'][0]], limit=25), record_path=['tracks', ['artists']])
+    
+    # create output dataframe for song recommendations
     
     result_list2 = result_list2.merge(query, left_on='uri', right_on='artist_uri')
     result_list2 = result_list2.rename(columns={'name': 'Artist Name', 'uri_x': 'Artist URI'})
-    #result_list = result_list.merge(query, left_on='uri', right_on='track_uri')
-    #result_list2 = result_list2.merge(result_list, left_on='Artist URI', right_on='artist_uri')
     result_list2 = result_list2.rename(columns={'track_name': 'Track Name'})
     final_df = result_list2[['Track Name', 'Artist Name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']].head(25)
+    
+    # create new field to calculate likeness for song metrics
+    
     for row in final_df:
         likeness1 = (result_df['acousticness'][0]/final_df['acousticness'])*100
         likeness2 = (result_df['danceability'][0]/final_df['danceability'])*100
