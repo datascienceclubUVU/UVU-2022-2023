@@ -7,6 +7,8 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # import libraries
 
+#Ethan is here!
+
 from turtle import clear
 import pandas as pd
 import numpy as np
