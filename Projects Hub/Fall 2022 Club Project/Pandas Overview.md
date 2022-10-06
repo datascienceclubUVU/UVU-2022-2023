@@ -37,18 +37,25 @@
                 [2]  'Lindon' 20       30        55
 ### Data Manipulation Techniques
 #### If Pandas is popular for anything, it would be Data Manipulation. Listed below are some of the Data Manipulation tasks Pandas is able to accomplish. TO FOLLOW ALONG, SIMPLY COPY THE CODE SAMPLES INTO A JUPYTER NOTEBOOK.
-     * String Concatenation - String concatenation simply combines two strings with a separator as an optional argument. 
-           - To concatenate two strings in a DataFrame, complete the following steps:
+     * String Concatenation  
+           - String concatenation simply combines two strings with a separator as an optional argument.
+             To concatenate two strings in a DataFrame, complete the following steps:
                   0. If you haven't installed Pandas yet:
                         pip install pandas
                      If you have installed Pandas:
                         import pandas as pd
                   1. Create dictionary for data to add to the dataframe
+                  2. Create the dataframe
+                  3. Concatenate the two string columns
+                  CODE SAMPLE:
+                        import pandas as pd
+                        
                         # Create dictionary for data to add to the dataframe
                         data = {'firstName': '[Enter your first name]', 'lastName': '[Enter your last name]'}
-                  2. Create the dataframe
+                        
                         # Create the dataframe
                         df = pd.DataFrame(data=data, index=[0])
-                  3. Concatenate the two string columns
+                        
                         # concatenate the two string columns by calling the "str" object and the "cat" method.
                         df['firstName'].str.cat(df['lastName'], sep=' ')
+                   
