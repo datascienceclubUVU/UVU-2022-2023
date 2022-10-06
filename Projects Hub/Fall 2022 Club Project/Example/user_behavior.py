@@ -7,6 +7,8 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # import libraries
 
+# Ethan's first comment
+
 # Chase's first comment
 
 #Kim's first comment
