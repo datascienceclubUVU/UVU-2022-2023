@@ -42,8 +42,7 @@
              To concatenate two strings in a DataFrame, complete the following steps:
                   0. If you haven't installed Pandas yet:
                         pip install pandas
-                     If you have installed Pandas:
-                        import pandas as pd
+                     If you have installed Pandas copy and paste the code sample below into a Jupyter Notebook.
                   1. Create dictionary for data to add to the dataframe
                   2. Create the dataframe
                   3. Concatenate the two string columns
@@ -58,4 +57,27 @@
                         
                         # concatenate the two string columns by calling the "str" object and the "cat" method.
                         df['firstName'].str.cat(df['lastName'], sep=' ')
-                   
+      * Change Data Types
+            - At times, you want to convert a column's data type to save RAM, create a calculation, 
+              or use a field as a dimension in a Data Visualization. To change a column's data type, 
+              complete the following steps:
+                  0. If you haven't installed Pandas yet:
+                        pip install pandas
+                     If you have installed Pandas copy and paste the code sample below into a Jupyter Notebook.
+                  1. Create dictionary for data to add to the dataframe
+                  2. Create the dataframe
+                  3. Call the dataframe column as set it to a new value by using the "astype" method
+                  CODE SAMPLE:
+                     import pandas as pd
+                     
+                     # Create dictionary for data to add to the dataframe
+                     data = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2, 3, 4]}
+                     
+                     # Create the dataframe
+                     df = pd.DataFrame(data=data)
+                     
+                     # Change the data type by setting the dataframe column to a new value and calling the "astype" method
+                     df['Price'] = df['Price'].astype(float)
+                     
+                     # Preview new dataframe
+                     df
