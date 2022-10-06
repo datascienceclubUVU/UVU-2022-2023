@@ -7,7 +7,7 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # import libraries
 
-# Chase's first commen
+# Chase's first comment
 
 from turtle import clear
 import pandas as pd
