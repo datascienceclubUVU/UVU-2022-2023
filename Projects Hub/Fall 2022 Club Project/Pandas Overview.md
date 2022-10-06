@@ -16,7 +16,8 @@
           - Example: False
 ### Data Structures
 #### Also like Python, Pandas includes a variety of data structures, including dome of its own. Listed below are some commonly used data structures:
-    * List - This consists of an assorted catalog of items with the SAME data type. The items in a list can be changed later in the program.
+    * List - This consists of an assorted catalog of items with the SAME data type. The items in a list can be changed later 
+             in the program.
           - Example: ['Apple', 'Banana', 'Orange']
           - Example: [5, 7, 85]
     * Tuple - This is the same as a list, except the values in the tuple CAN'T be changed later in the program.
@@ -27,7 +28,9 @@
          - Example: 'Apple'
                     'Banana'
                     'Orange'
-    * DataFrame - This is a two-dimensional data structure that is formed in the shape of a basic table. These can include indexes to reference specific items (shown below in the brackets). These are the most common data structure used in Pandas.
+    * DataFrame - This is a two-dimensional data structure that is formed in the shape of a basic table. These can include 
+                  indexes to reference specific items (shown below in the brackets). These are the most common data structure 
+                  used in Pandas.
          - Example: 'Store'  'Apples' 'Bananas' 'Oranges'
                 [0]  'Orem'   55       30        20
                 [1]  'Provo'  30       55        20
