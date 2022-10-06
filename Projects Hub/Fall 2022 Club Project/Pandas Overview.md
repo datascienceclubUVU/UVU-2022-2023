@@ -25,13 +25,30 @@
     * Dictionary - This is a list of values identified by a key value. These are used when creating Dataframes (see below).
           - Example: {'Apples': 55, 'Bananas': 30, 'Oranges': 20}
     * Series - This is a one-dimensional data structure that is formed in the shape of a vertical list or column.
-         - Example: 'Apple'
-                    'Banana'
-                    'Orange'
+          - Example: 'Apple'
+                     'Banana'
+                     'Orange'
     * DataFrame - This is a two-dimensional data structure that is formed in the shape of a basic table. These can include 
                   indexes to reference specific items (shown below in the brackets). These are the most common data structure 
                   used in Pandas.
-         - Example: 'Store'  'Apples' 'Bananas' 'Oranges'
+          - Example: 'Store'  'Apples' 'Bananas' 'Oranges'
                 [0]  'Orem'   55       30        20
                 [1]  'Provo'  30       55        20
                 [2]  'Lindon' 20       30        55
+### Data Manipulation Techniques
+#### If Pandas is popular for anything, it would be Data Manipulation. Listed below are some of the Data Manipulation tasks Pandas is able to accomplish. TO FOLLOW ALONG, SIMPLY COPY THE CODE SAMPLES INTO A JUPYTER NOTEBOOK.
+     * String Concatenation - String concatenation simply combines two strings with a separator as an optional argument. 
+           - To concatenate two strings in a DataFrame, complete the following steps:
+                  0. If you haven't installed Pandas yet:
+                        pip install pandas
+                     If you have installed Pandas:
+                        import pandas as pd
+                  1. Create dictionary for data to add to the dataframe
+                        # Create dictionary for data to add to the dataframe
+                        data = {'firstName': '[Enter your first name]', 'lastName': '[Enter your last name]'}
+                  2. Create the dataframe
+                        # Create the dataframe
+                        df = pd.DataFrame(data=data, index=[0])
+                  3. Concatenate the two string columns
+                        # concatenate the two string columns by calling the "str" object and the "cat" method.
+                        df['firstName'].str.cat(df['lastName'], sep=' ')
