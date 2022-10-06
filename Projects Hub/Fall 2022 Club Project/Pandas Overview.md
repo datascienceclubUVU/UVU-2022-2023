@@ -23,3 +23,12 @@
           - Example: ('apple', 'banana', 'orange')
     * Dictionary - This is a list of values identified by a key value. These are used when creating Dataframes (see below).
           - Example: {'Apples': 55, 'Bananas': 30, 'Oranges': 20}
+    * Series - This is a one-dimensional data structure that is formed in the shape of a vertical list or column.
+         - Example: 'Apple'
+                    'Banana'
+                    'Orange'
+    * DataFrame - This is a two-dimensional data structure that is formed in the shape of a basic table. These can include indexes to reference specific items (shown below in the brackets). These are the most common data structure used in Pandas.
+         - Example: 'Store'  'Apples' 'Bananas' 'Oranges'
+                [0]  'Orem'   55       30        20
+                [1]  'Provo'  30       55        20
+                [2]  'Lindon' 20       30        55
