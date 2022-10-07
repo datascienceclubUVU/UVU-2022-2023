@@ -176,3 +176,47 @@
               
               # unpivot the columns
               pd.melt(df, id_vars=['Character'], var_name='Ability', value_name='Rating', value_vars=['Strength', 'Speed', 'Health'])
+     * Normalize JSON Files
+           - JavaScript Object Notation (JSON) is a type of file that contains data in a "nested" format. This means that it acts 
+             similar to a File Explorer, where items are identified by a header (known as a "path") to keep things organized. Pandas
+             allows users to convert JSON files to dataframes using the "json_normalize" function. To convert a JSON file to a 
+             dataframe, complete the following steps:
+             0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+             1. Import the JSON file/data.
+             2. Call the "json_normalize" method.
+             3. Output the new dataframe.
+             SYNTAX: pd.json_normalize([file or variable name], record_path=['[name of path header, [name of nested path header]')
+             CODE SAMPLE:
+             import pandas as pd
+             
+             # import the JSON file/data
+             data = {
+  "destination_addresses": [
+    "Philadelphia, PA, USA"
+  ],
+  "origin_addresses": [
+    "New York, NY, USA"
+  ],
+  "rows": [{
+    "elements": [{
+      "distance": {
+        "text": "94.6 mi",
+        "value": 152193
+      },
+      "duration": {
+        "text": "1 hour 44 mins",
+        "value": 6227
+      },
+      "status": "OK"
+    }]
+  }],
+  "status": "OK"
+}
+
+         # convert the JSON data to dataframe
+         df = pd.json_normalize(data, record_path=['rows', ['elements']])
+         
+         # output the new dataframe
+         df
