@@ -81,3 +81,70 @@
                      
                      # Preview new dataframe
                      df
+       * Join Dataframes
+            - Just like in a database, joining tables (or in this case, dataframes) is a great way to get related data from 
+              multiple sources. To join two dataframes, complete the following steps:
+              0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+              1. Create dictionaries for data to add to the dataframes.
+              2. Create the dataframes.
+              3. Join dataframes by calling the "merge" method.
+              CODE SAMPLE:
+                  import pandas as pd
+                  
+                  # Create dictionaries to hold the data
+                  data1 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2.0, 3.0, 4.0]}
+                  data2 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Grapes', 'Strawberries', 'Mangoes'], 'Price': [1.25, 0.85, 4.75]}
+                  
+                  # Create the dataframes
+                  df1 = pd.DataFrame(data=data1)
+                  df2 = pd.DataFrame(data=data2)
+                  
+                  # Join the dataframes
+                  df = df1.merge(df2, how='inner', left_on='Store', right_on='Store')
+                  df
+      * Union Dataframes
+            - Just like in SQL, you can union two queries or tables to combine the results, whether or not they match a key.
+              To union two dataframes, complete the following steps:
+              0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+              1. Create dictionaries for data to add to the dataframes.
+              2. Create the dataframes.
+              3. Union the dataframes by calling the "concat" method.
+              CODE SAMPLE
+                  import pandas as pd
+                  
+                  # Create dictionaries for data to add to the dataframes
+                  data1 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2.0, 3.0, 4.0]}
+                  data2 = {'Store': ['Draper', 'Sandy', 'Murray'], 'Item': ['Grapes', 'Strawberries', 'Mangoes'], 'Price': [1.25, 0.85, 4.75]}
+                  
+                  # Create the dataframes
+                  df1 = pd.DataFrame(data=data1)
+                  df2 = pd.DataFrame(data=data2)
+                  
+                  # Union the dataframes
+                  df = pd.concat([df1, df2])
+                  df
+      * Query a Dataframe
+            - The most commonly used tool in data analysis is querying. This involves writing out a statement 
+              to specify the columns to view, row conditions, and the sorting order. To query a dataframe,
+              complete the following steps:
+              0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+              1. Create the dictionary to hold the data.
+              2. Create the dataframe.
+              3. Query the dataframe by calling the "loc" method
+              SYNTAX: .loc([row condition], [columns to show])
+              CODE SAMPLE:
+              
+              # create the dictionary to hold the data
+              data = {'Store':['Orem', 'Orem', 'Orem', 'Provo', 'Provo', 'Lindon'], 'Item':['Apple','Banana','Orange','Apple','Banana','Orange'], 'Price':[4.0, 5.25, 6.0, 7.25, 8.0, 1.25]}
+              
+              # Create the dataframe
+              df = pd.DataFrame(data=data)
+              
+              # Query the dataframe
+              df.loc[df['Store'] == 'Provo', :]
