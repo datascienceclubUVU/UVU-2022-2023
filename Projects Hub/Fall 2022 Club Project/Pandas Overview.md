@@ -121,6 +121,7 @@
               3. Query the dataframe by calling the "loc" method
               SYNTAX: df.loc([row condition], [columns to show])
               CODE SAMPLE:
+              import pandas as pd
               
               # create the dictionary to hold the data
               data = {'Store':['Orem', 'Orem', 'Orem', 'Provo', 'Provo', 'Lindon'], 'Item':['Apple','Banana','Orange','Apple','Banana','Orange'], 'Price':[4.0, 5.25, 6.0, 7.25, 8.0, 1.25]}
@@ -141,6 +142,7 @@
               3. Add new rows to the dataframe by calling the "append" method.
               SYNTAX: df.append({'[column1]':[value], '[column2]':[value], '[column3]':[value]}, ignore_index=True)
               CODE SAMPLE:
+              import pandas as pd
               
               # create the dictionary to hold the data
               data = {'Store':['Orem', 'Provo', 'Lindon'], 'Item':['Apple', 'Banana', 'Orange'], 'Price':[0.55, 0.95, 1.05]}
@@ -150,3 +152,27 @@
               
               # add new row to the dataframe
               df.append({'Store':'Orem', 'Item':'Grapes', 'Price': 2.25}, ignore_index=True)
+      * Unpivot Columns in a Dataframe
+            - Sometimes, dataframes contain large amounts of columns that can get in the way of an efficient query.
+              To solve this problem, we can unpivot the column names and values into only two columns. To unpivot
+              multiple columns in a dataframe, complete the following steps:
+              0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+              1. Create the dictionary to hold the data.
+              2. Create the dataframe.
+              3. Unpivot the columns and aggregate the values by calling the "melt" method.
+              SYNTAX: pd.melt([dataframe], id_vars='[list of columns to NOT unpivot]', var_name='[name of new column to hold column names]', 
+                      value_name='[name of new column to hold column values]', value_vars='[list of columns to unpivot]'
+              CODE SAMPLE:
+              import pandas as pd
+              
+              # create the dictionary to hold the data
+              data = {'Character':['Mario', 'Luigi', 'Wario', 'Waluigi', 'Toad'], 'Strength':[70, 60, 40, 45, 15], 'Speed':[55, 70, 25, 60, 80], 'Health':
+                     [95, 80, 65, 70, 40]}
+                     
+              # create the dataframe
+              df = pd.DataFrame(data=data)
+              
+              # unpivot the columns
+              pd.melt(df, id_vars=['Character'], var_name='Ability', value_name='Rating', value_vars=['Strength', 'Speed', 'Health'])
