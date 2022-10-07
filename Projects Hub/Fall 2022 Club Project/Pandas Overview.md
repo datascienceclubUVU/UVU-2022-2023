@@ -36,27 +36,7 @@
                 [1]  'Provo'  30       55        20
                 [2]  'Lindon' 20       30        55
 ### Data Manipulation Techniques
-#### If Pandas is popular for anything, it would be Data Manipulation. Listed below are some of the Data Manipulation tasks Pandas is able to accomplish. TO FOLLOW ALONG, SIMPLY COPY THE CODE SAMPLES INTO A JUPYTER NOTEBOOK.
-     * String Concatenation  
-           - String concatenation simply combines two strings with a separator as an optional argument.
-             To concatenate two strings in a DataFrame, complete the following steps:
-                  0. If you haven't installed Pandas yet:
-                        pip install pandas
-                     If you have installed Pandas copy and paste the code sample below into a Jupyter Notebook.
-                  1. Create dictionary for data to add to the dataframe
-                  2. Create the dataframe
-                  3. Concatenate the two string columns
-                  CODE SAMPLE:
-                        import pandas as pd
-                        
-                        # Create dictionary for data to add to the dataframe
-                        data = {'firstName': '[Enter your first name]', 'lastName': '[Enter your last name]'}
-                        
-                        # Create the dataframe
-                        df = pd.DataFrame(data=data, index=[0])
-                        
-                        # concatenate the two string columns by calling the "str" object and the "cat" method.
-                        df['firstName'].str.cat(df['lastName'], sep=' ')
+#### Pandas offers hundreds of different techniques to analyze and manipulate data. In this section, I'll give a breif overview of some of the techniques used in the Example project with some code samples. TO FOLLOW ALONG, SIMPLY COPY THE CODE SAMPLES INTO A JUPYTER NOTEBOOK.
       * Change Data Types
             - At times, you want to convert a column's data type to save RAM, create a calculation, 
               or use a field as a dimension in a Data Visualization. To change a column's data type, 
@@ -73,13 +53,13 @@
                      # Create dictionary for data to add to the dataframe
                      data = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2, 3, 4]}
                      
-                     # Create the dataframe
+                     # create the dataframe
                      df = pd.DataFrame(data=data)
                      
-                     # Change the data type by setting the dataframe column to a new value and calling the "astype" method
+                     # change the Price column's data type
                      df['Price'] = df['Price'].astype(float)
                      
-                     # Preview new dataframe
+                     # preview new dataframe
                      df
        * Join Dataframes
             - Just like in a database, joining tables (or in this case, dataframes) is a great way to get related data from 
@@ -90,18 +70,19 @@
               1. Create dictionaries for data to add to the dataframes.
               2. Create the dataframes.
               3. Join dataframes by calling the "merge" method.
+              SYNTAX: df.merge([second dataframe], how='[type of join]', left_on='[primary key]', right_on='[foreign key]'
               CODE SAMPLE:
                   import pandas as pd
                   
-                  # Create dictionaries to hold the data
+                  # create dictionaries to hold the data
                   data1 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2.0, 3.0, 4.0]}
                   data2 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Grapes', 'Strawberries', 'Mangoes'], 'Price': [1.25, 0.85, 4.75]}
                   
-                  # Create the dataframes
+                  # create the dataframes
                   df1 = pd.DataFrame(data=data1)
                   df2 = pd.DataFrame(data=data2)
                   
-                  # Join the dataframes
+                  # join the dataframes
                   df = df1.merge(df2, how='inner', left_on='Store', right_on='Store')
                   df
       * Union Dataframes
@@ -113,18 +94,19 @@
               1. Create dictionaries for data to add to the dataframes.
               2. Create the dataframes.
               3. Union the dataframes by calling the "concat" method.
+              SYNTAX: .concat([list of dataframes])
               CODE SAMPLE
                   import pandas as pd
                   
-                  # Create dictionaries for data to add to the dataframes
+                  # create dictionaries for data to add to the dataframes
                   data1 = {'Store': ['Orem', 'Provo', 'Lindon'], 'Item': ['Apple', 'Banana', 'Orange'], 'Price': [2.0, 3.0, 4.0]}
                   data2 = {'Store': ['Draper', 'Sandy', 'Murray'], 'Item': ['Grapes', 'Strawberries', 'Mangoes'], 'Price': [1.25, 0.85, 4.75]}
                   
-                  # Create the dataframes
+                  # create the dataframes
                   df1 = pd.DataFrame(data=data1)
                   df2 = pd.DataFrame(data=data2)
                   
-                  # Union the dataframes
+                  # union the dataframes
                   df = pd.concat([df1, df2])
                   df
       * Query a Dataframe
@@ -137,14 +119,34 @@
               1. Create the dictionary to hold the data.
               2. Create the dataframe.
               3. Query the dataframe by calling the "loc" method
-              SYNTAX: .loc([row condition], [columns to show])
+              SYNTAX: df.loc([row condition], [columns to show])
               CODE SAMPLE:
               
               # create the dictionary to hold the data
               data = {'Store':['Orem', 'Orem', 'Orem', 'Provo', 'Provo', 'Lindon'], 'Item':['Apple','Banana','Orange','Apple','Banana','Orange'], 'Price':[4.0, 5.25, 6.0, 7.25, 8.0, 1.25]}
               
-              # Create the dataframe
+              # create the dataframe
               df = pd.DataFrame(data=data)
               
-              # Query the dataframe
+              # query the dataframe
               df.loc[df['Store'] == 'Provo', :]
+      * Append Rows to a Dataframe
+            - Dataframes are anything but static, thus allowing you to alter them whenever you like. To add new rows
+              to a dataframe, complete the following steps:
+              0. If you haven't installed Pandas yet:
+                    pip install pandas
+                 If you have installed Pandas, copy and paste the code sample below into a Jupyter Notebook.
+              1. Create the dictionary to hold the data.
+              2. Create the dataframe.
+              3. Add new rows to the dataframe by calling the "append" method.
+              SYNTAX: df.append({'[column1]':[value], '[column2]':[value], '[column3]':[value]}, ignore_index=True)
+              CODE SAMPLE:
+              
+              # create the dictionary to hold the data
+              data = {'Store':['Orem', 'Provo', 'Lindon'], 'Item':['Apple', 'Banana', 'Orange'], 'Price':[0.55, 0.95, 1.05]}
+              
+              # create the dataframe
+              df = pd.DataFrame(data=data)
+              
+              # add new row to the dataframe
+              df.append({'Store':'Orem', 'Item':'Grapes', 'Price': 2.25}, ignore_index=True)
