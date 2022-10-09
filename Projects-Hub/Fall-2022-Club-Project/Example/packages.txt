@@ -6,3 +6,4 @@ pandarallel
 tqdm
 plotly
 pyodbc
+libtk8.6
