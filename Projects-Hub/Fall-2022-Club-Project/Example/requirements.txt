@@ -2,7 +2,8 @@ streamlit
 pandas
 numpy
 Spotipy
+pandarallel
+tqdm
 plotly
-pyodbc
-random
 turtle
+pyodbc
