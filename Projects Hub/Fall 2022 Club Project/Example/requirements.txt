@@ -1,3 +1,11 @@
-streamlit==0.68.1
-pandas==0.25.3
-numpy==1.18.1
+streamlit
+pandas
+numpy
+Spotipy
+warnings
+pandarallel
+tqdm
+plotly
+random
+turtle
+pyodbc
