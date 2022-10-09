@@ -6,8 +6,7 @@ Python libraries allow users to extend the abilities of the language compiler. F
 '''
 
 # import libraries
-
-from plotly import plotly
+import plotly
 import pandas as pd
 import numpy as np
 import streamlit as st
