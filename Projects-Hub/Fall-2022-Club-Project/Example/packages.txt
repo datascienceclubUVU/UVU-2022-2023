@@ -5,5 +5,6 @@ Spotipy
 pandarallel
 tqdm
 plotly
+plotly.express
 pyodbc
 libtk8.6
