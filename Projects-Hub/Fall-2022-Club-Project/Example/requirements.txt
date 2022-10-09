@@ -5,5 +5,4 @@ Spotipy
 pandarallel
 tqdm
 plotly
-turtle
 pyodbc
