@@ -5,6 +5,5 @@ Spotipy
 pandarallel
 tqdm
 plotly
-random
 turtle
 pyodbc
