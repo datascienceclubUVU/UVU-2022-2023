@@ -15,7 +15,7 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # Chad's first comment here!
 
-from turtle import clear
+
 import pandas as pd
 import numpy as np
 import streamlit as st
