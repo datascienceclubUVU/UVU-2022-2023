@@ -33,7 +33,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-@st.cache(allow_outup_mutation=True) # this is changed to st.experimantal_singleton
+st.experimentation_singleton() # this is changed to st.experimantal_singleton
 def connect_db():
    try:
       con=pyodbc.connect(
