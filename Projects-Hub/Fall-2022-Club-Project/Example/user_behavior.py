@@ -40,7 +40,6 @@ con=pyodbc.connect(
       DATABASE='Spotify',
       Trusted_Connection='yes'
       )
-      cursor = con.cursor()
 
 
 
