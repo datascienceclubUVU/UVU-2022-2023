@@ -38,7 +38,7 @@ def init_connection():
         + st.secrets["LAPTOP-V3754MEK"]
         + ";DATABASE="
         + st.secrets["Spotify"]
-        + ";Trusted_Connection=yes"
+        + st.secrets[";Trusted_Connection=yes;"]
 
 conn = init_connection()
 
