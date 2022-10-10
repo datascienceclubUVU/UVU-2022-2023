@@ -33,8 +33,20 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-engine = pyodbc.connect("Driver={ODBC Driver 17 for SQL Server};""Server=192.168.1.132,1433;""Database=Spotify;""Trusted_Connection=yes;")
-cursor = engine.cursor()
+@st.cache(allow_outup_mutation=True) # this is changed to st.experimantal_singleton
+def connect_db():
+   try:
+      con=pyodbc.connect(
+      driver = 'ODBC DRIVER 17 FOR SQL SERVER',
+      Server = 'localhost',
+      DATABASE='Spotify',
+      Trusted_Connection='yes'
+      )
+      cursor = con.cursor()
+   except Exception as e:
+      st.write("error is :{}".format(e))
+   return con
+
 
 
 # create initial query
@@ -42,7 +54,7 @@ cursor = engine.cursor()
 query = pd.read_sql('''SELECT DISTINCT dt.track_name, dt.artist_name, dt.track_uri, da.artist_uri, af.*
 FROM audio_features2 af 
 JOIN dim_tracks dt ON af.uri = dt.track_uri2
-JOIN dim_artists da ON dt.artist_name = da.artist_name''', connection)
+JOIN dim_artists da ON dt.artist_name = da.artist_name''', connect_db())
 
 # transform query fields
 
