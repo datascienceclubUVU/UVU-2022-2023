@@ -35,7 +35,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 st.experimental_singleton() # this is changed to st.experimantal_singleton
 con=pyodbc.connect(
-      driver = 'ODBC DRIVER 17 FOR SQL SERVER',
+      driver = 'ODBC DRIVER 13 FOR SQL SERVER',
       Server = 'localhost',
       DATABASE='Spotify',
       Trusted_Connection='yes'
