@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
-import SQLAlchemy as db
+import sqlalchemy as db
 from random import seed
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
