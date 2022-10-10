@@ -35,7 +35,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 server = 'LAPTOP-V3754MEK'
 database = 'Spotify'
-driver = 'ODBC Driver for SQL Server'
+driver = 'ODBC Driver 17 for SQL Server'
 connection_string = f'mssql://{server}/{database}?driver={driver}?Trusted_Connection=yes'
 engine = db.create_engine(connection_string)
 connection = engine.connect()
