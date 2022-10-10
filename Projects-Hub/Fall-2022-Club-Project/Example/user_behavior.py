@@ -47,14 +47,14 @@ def connect_db():
       st.write("error is :{}".format(e))
    return con
 
-
+con = connect_db()
 
 # create initial query
 
 query = pd.read_sql('''SELECT DISTINCT dt.track_name, dt.artist_name, dt.track_uri, da.artist_uri, af.*
 FROM audio_features2 af 
 JOIN dim_tracks dt ON af.uri = dt.track_uri2
-JOIN dim_artists da ON dt.artist_name = da.artist_name''', connect_db())
+JOIN dim_artists da ON dt.artist_name = da.artist_name''', con)
 
 # transform query fields
 
