@@ -32,8 +32,15 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-engine = pyodbc.connect("Driver={ODBC Driver 17 for SQL Server};""Server=LAPTOP-V3754MEK;""Database=Spotify;""Trusted_Connection=yes;")
-cursor = engine.cursor()
+def init_connection():
+    return pyodbc.connect(
+        "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
+        + st.secrets["LAPTOP-V3754MEK"]
+        + ";DATABASE="
+        + st.secrets["Spotify"]
+        + ";Trusted_Connection=yes"
+
+conn = init_connection()
 
 # create initial query
 
