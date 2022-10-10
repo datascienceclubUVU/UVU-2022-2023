@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
-import pyodbc
+import SQLAlchemy as db
 from random import seed
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -32,15 +32,17 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-engine = pyodbc.connect("Driver={ODBC Driver 17 for SQL Server};""Server=LAPTOP-V3754MEK;""Database=Spotify;""Trusted_Connection=yes;")
-cursor = engine.cursor()
+connection_string = "mssql+pyodbc://LAPTOP-V3754MEK/Spotify?driver=SQL Server?Trusted_Connection=yes"
+engine = db.create_engine(connection_string)
+connection = engine.connect()
+
 
 # create initial query
 
 query = pd.read_sql('''SELECT DISTINCT dt.track_name, dt.artist_name, dt.track_uri, da.artist_uri, af.*
 FROM audio_features2 af 
 JOIN dim_tracks dt ON af.uri = dt.track_uri2
-JOIN dim_artists da ON dt.artist_name = da.artist_name''', engine)
+JOIN dim_artists da ON dt.artist_name = da.artist_name''', connection)
 
 # transform query fields
 
