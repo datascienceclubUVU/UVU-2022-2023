@@ -37,7 +37,7 @@ server = 'LAPTOP-V3754MEK'
 database = 'Spotify'
 driver = 'ODBC Driver 17 for SQL Server'
 connection_string = f'mssql://{server}/{database}?driver={driver}'
-engine = db.create_engine(connection_string)
+engine = db.create_engine(connection_string, pool_pre_ping=True)
 connection = engine.connect()
 
 
