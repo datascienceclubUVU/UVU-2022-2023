@@ -34,20 +34,15 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 # establish SQL Server connection
 
 st.experimental_singleton() # this is changed to st.experimantal_singleton
-def connect_db():
-   try:
-      con=pyodbc.connect(
+con=pyodbc.connect(
       driver = 'ODBC DRIVER 17 FOR SQL SERVER',
       Server = 'localhost',
       DATABASE='Spotify',
       Trusted_Connection='yes'
       )
       cursor = con.cursor()
-   except Exception as e:
-      st.write("error is :{}".format(e))
-   return con
 
-con = connect_db()
+
 
 # create initial query
 
