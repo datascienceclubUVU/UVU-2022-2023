@@ -6,4 +6,4 @@ pandarallel
 tqdm
 plotly
 plotly-express
-pyodbc
+SQLAlchemy
