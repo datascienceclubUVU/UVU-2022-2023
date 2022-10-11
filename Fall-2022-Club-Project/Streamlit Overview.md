@@ -13,24 +13,17 @@
 6. With the terminal open, type "cd [path]" (without the quotes) and copy and paste the file path to your app's Python file
 7. With the new directory specified, type "streamlit run [file name].py" (without the quotes)
 ## Library Features
-#### As mentioned above, Spotipy offers a variety of tools to extract a variety of data from Spotify's web servers. Listed below are some of the methods and functions we will be using in this project to extract the appropriate data:
-#### <ins>Write</ins> (from spotipy.oauth2)
-##### - This is a class of methods and functions offered by Spotipy to access the Spotify API using a user's embedded API key and Secret Key for authorized access. To use this feature, use the following code sample:
-#### If you haven't installed Spotipy:
-          pip install Spotipy
-#### If you have installed Spotipy, continue with the following code:
-    import Spotipy
-    from spotipy.oauth2 import SpotifyClientCredentials
-
-    # create variables to hold credentials
-    cliend_id = '[copy and paste your client ID into this string]'
-    secret_key = '[copy and paste your secret key into this string]'
-
-    # create variable to access the credentials manager function
-    client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=secret_key)
-
-    # assign the connection string to a simple variable
-    sp = Spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+#### Streamlit allows users a wide variety of tools for interactivity, structure, and formatting for your web app. The tools used in the example app include the following:
+#### <ins>Write</ins>
+##### - This is the equivalent of Python's "print()" method and is used to display a line of text. To use this feature, follow the syntax below and use the following code sample:
+#### SYNTAX:
+          streamlit.write('[string]')
+#### CODE SAMPLE:
+    import streamlit as st
+    
+    # write a basic line of text
+    
+    st.write('Hello, World!')
 #### <ins>audio_features</ins> (using the "sp" variable from above)
 ##### - This method accesses the connection variable we setup in the previous code sample to retrieve the audio features of a specified track. This method will retrieve all the metrics used for our analysis (e.g., instrumentalness, acousticness, dancability). To use this feature, use the following code sample:
                     sp.audio_features([track uri])
