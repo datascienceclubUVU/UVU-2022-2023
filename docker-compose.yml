@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  uvu20222023:
-    image: uvu20222023
-    build:
-      context: .
-      dockerfile: ./Dockerfile
