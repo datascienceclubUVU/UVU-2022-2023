@@ -26,3 +26,20 @@
           from the server.
     - DROP SCHEMA [schema_name];
         - This allows you to remove the specified schema from the database in which you are running the statement.
+## <ins>Example</ins>
+#### - In the example below, I will show you how to use these statements to organize your RDBMS. This example follows a makeshift company who wants to make an organized sales database for managers to keep track of how much sales each of their sales reps bring in:
+        CREATE DATABASE sales;
+        CREATE SCHEMA managers;
+        CREATE TABLE managers.sales_rep (rep_id INT PRIMARY KEY, first_name VARCHAR(255), 
+                                                last_name VARCHAR(255), hire_date DATE, last_day DATE,
+                                                sales_to_date FLOAT, commission_amt FLOAT);
+        CREATE VIEW managers.total_sales_by_rep AS (SELECT rep_id, first_name, last_name, SUM(sales_to_date)
+                                                    FROM managers.sales_rep
+                                                    WHERE hire_date <= '01/01/2022' AND last_day <= '06/01/2022'
+                                                    GROUP BY rep_id, first_name, last_name
+                                                    ORDER BY rep_id);
+## NEXT STEPS
+#### - Falling in love with SQL? You're not alone! Here are some more tutorials to aid you in your SQL learning journey:
+##### - [DML](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/DML.md)
+##### - [SQL Best Practices](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/SQL%20Best%20Practices.md)
+##### - [Subqueries](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Subqueries.md)
