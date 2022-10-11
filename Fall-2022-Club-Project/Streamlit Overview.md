@@ -79,7 +79,7 @@
     
     st.header('Description')
 ### <ins>Select Box</ins>
-##### - This object allows users to select an item from a dropdown menu. In the example app, the drop down values are derived from the data warehouse that is being queried by the database engine. To use this feature, follow the syntax below and use the following code cample:
+##### - This object allows users to select an item from a dropdown menu. In the example app, the drop down values are derived from the data warehouse that is being queried by the database engine. To use this feature, follow the syntax below and use the following code sample:
 #### SYNTAX:
     streamlit.selectbox(label='[label]', options=['list of values'], placeholder='[placeholder text]')
 #### CODE SAMPLE:
@@ -88,3 +88,26 @@
     # create select box for users to choose a color
     
     st.selectbox(label='Choose a Color:', options=['Red', 'Blue', 'Green', 'Yellow'], placeholder='Select a color...')
+### <ins>Sidebar</ins>
+##### - This object allows you to better organize your app's interactive features by grouping the interactive objects (such as Select Boxes) into a container that can be expanded and collapsed. To use this feature, follow the syntax below and use the following code sample:
+#### SYNTAX:
+    streamlit.sidebar.[element name]
+    OR
+    with streamlit.sidebar:
+        streamlit.[element name]
+        streamlit.[element name]
+#### CODE SAMPLE
+    import streamlit as st
+    
+    # create sidebar using the first syntax
+    
+    st.sidebar.header("Select your Vehicle's Options")
+    st.sidebar.selectbox('Make:', options=['Ford', 'Chevrolet', 'Toyota'])
+    st.sidebar.selectbox('Model:', options=['Explorer', 'Silverado', 'Tundra'])
+    
+    # create sidebar using the second syntax
+    
+    with st.sidebar:
+        st.header("Select your Vehicle's Options")
+        st.selectbox('Make:', options=['Ford', 'Chevrolet', 'Toyota'])
+        st.selectbox('Model:', options=['Explorer', 'Silverado', 'Tundra'])
