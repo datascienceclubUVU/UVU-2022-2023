@@ -24,6 +24,19 @@
     # write a basic line of text
     
     st.write('Hello, World!')
+### <ins>Text</ins>
+##### - This method is almost identical to the "write" method, with one minor difference: This method is primarily used to create blank spaces between headers and paragraphs. To use this feature, follow the syntax below and use the following code sample:
+#### SYNTAX:
+    streamlit.text('[text]')
+#### CODE SAMPLE:
+    import streamlit as st
+    
+    # create blank space between lines of text.
+    
+    st.write('Welcome to my App!')
+    st.text('')
+    st.text('')
+    st.write('Here is a brief description:')
 ### <ins>Set Page Configuration</ins>
 ##### - This method is used to set the page title and the app's structure. You can select between the default setting, "centered", or "wide". "Centered" is used to simply center your app's contents on the web page, whereas "wide" is used to fill the entire web page and is dynamic according to screen size*. To use this feature, follow the syntax below and use the following code sample:
 #### SYNTAX:
@@ -34,6 +47,44 @@
     # set page configuration
     
     st.set_page_config(page_title='My App', layout='centered')
-#### <ins>track</ins> (using the "sp" variable from above)
-##### - This method retrieves all relevant track information from Spotify's Data Warehouse via the Spotify API connection we created earlier. Because web data is stored in JSON files, we need to specify the paths in order to retrieve the data related to our inquiry (see Pandas overview for more information). To use this feature, use the following code sample:
-                    sp.track([track uri])
+### <ins>Markdown</ins>
+##### - This method is used to create an internal CSS file that can be used to format text across your app. In order to activate the CSS, make sure to set the "unsafe_allow_html" parameter to "True". To use this feature, follow the syntax below and use the following code sample:
+#### SYNTAX:
+    streamlit.markdown(''' <style>
+                            .[class1] { [attribute1]: [value1];}
+                            .[class2] { [attribute1]: [value1];
+                                        [attribute2]: [value2];}
+                            </style
+                       ''', unsafe_allow_html=[True | False])
+#### CODE SAMPLE:
+    import streamlit as st
+    
+    # create internal CSS file
+    
+    st.markdown(''' <style>
+                    .title { font-size: 45px;
+                             text-align: center;}
+                    .citation { font-size: 12px;
+                                text-align: left}
+                    </style>
+                ''', unsafe_allow_html=True)
+### <ins>Header</ins>
+##### - Although headers can be created by using the "markdown" method as described above, the header object can be used to specify the titles of other objects including sidebars, expanders, and containers (all described below). To use this feature, follow the syntax below and use the following code sample:
+#### SYNTAX:
+    streamlit.header('[header]')
+#### CODE SAMPLE:
+    import streamlit as st
+    
+    # create basic section header
+    
+    st.header('Description')
+### <ins>Select Box</ins>
+##### - This object allows users to select an item from a dropdown menu. In the example app, the drop down values are derived from the data warehouse that is being queried by the database engine. To use this feature, follow the syntax below and use the following code cample:
+#### SYNTAX:
+    streamlit.selectbox(label='[label]', options=['list of values'], placeholder='[placeholder text]')
+#### CODE SAMPLE:
+    import streamlit as st
+    
+    # create select box for users to choose a color
+    
+    st.selectbox(label='Choose a Color:', options=['Red', 'Blue', 'Green', 'Yellow'], placeholder='Select a color...')
