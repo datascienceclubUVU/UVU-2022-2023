@@ -20,7 +20,6 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
-import sqlalchemy
 from random import seed
 import pyodbc
 import spotipy
@@ -42,7 +41,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-engine = pyodbc.connect("Driver={SQL Server Native Client 11.0};""Server=LAPTOP-V3754MEK;""Database=Spotify;""Trusted_Connection=yes;")
+engine = pyodbc.connect("Driver={ODBC Driver 13 for SQL Server};""Server=LAPTOP-V3754MEK;""Database=Spotify;""Trusted_Connection=yes;")
 cursor = engine.cursor()
 
 # create initial query
@@ -211,11 +210,7 @@ with st.expander('Song Recommendations'):
     result_query = result_query.drop_duplicates()
     result_df = pd.DataFrame(result_query)
     result_df = result_df[['track_name', 'artist_name', 'album_name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence', 'artist_uri', 'uri']]
-    if len(result_df) > 1:
-        viz_query['metrics'] = viz_query['metrics']/len(result_df)
-        st.dataframe(result_df)
-    else:
-        st.dataframe(result_df)
+    st.dataframe(result_df)
     
     
     # get all artist data
