@@ -1,8 +1,5 @@
 # Welcome to the _Data Analytics_ Branch!
-
-#### This branch will provide you with the resources you need to become an Expert in the field of Business Intelligence (BI).
-## ~ CONTENTS ~
-###  _FOLDERS_:
+## <ins>CONTENTS</ins>
 * **Data Visualization**
    - This folder includes the following components:
       - Tableau/Power BI tutorials for beginners.

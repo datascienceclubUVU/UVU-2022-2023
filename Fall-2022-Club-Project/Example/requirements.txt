@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+Spotipy
+pandarallel
+tqdm
+plotly
+plotly-express
+pyodbc
+sqlalchemy
