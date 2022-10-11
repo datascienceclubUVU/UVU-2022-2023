@@ -1,23 +1,15 @@
-# Learn Beginner SQL in 5 steps in 5 minutes!
-#### Written by: Terence Shin
-### ~
-## _Introduction_
-#### So you want to learn SQL? Great, you should!
-
-#### Did you know it’s the number one most desired skill for data analysts and data engineers and the third most desired skill for data scientists?
-#### In this article, I’m going to explain to you how to query with SQL in the easiest way possible. But first, let me define a couple of terms…
-#### If this is the kind of stuff that you like, be one of the FIRST to subscribe to my new YouTube channel here! While there aren’t any videos yet, I’ll be sharing lots of amazing content like this but in video form. Thanks for your support :)
-
-## _Definitions_
-#### A _row_, also called a record, is a collection of attributes (variables) that represent a single entity. For example, one row may represent one hospital patient and may have attributes/variables like age, weight, height, etc…
-#### A _table_ is a collection of rows with the same attributes (with the same variables). What helps me the most is to think of a table as an Excel table.
+# SQL for Beginners
+## <ins>Introduction</ins>
+#### Interested in learning more about the world of databases? Look no further than SQL! This tutorial will be your guide to learn the basic SQL statements. Enjoy!
 
 
-example of a table
-IMAGE GOES HERE
-#### A _query_ is a request for data from a database table or combination of tables. Using the table above, I would write a query if I wanted to find all patients that were older than 23 years old.
+## <ins>Definitions</ins>
+#### A <i>column</i>, also called an "attribute" or "field", describes an aspect of a data point. For example, height, weight, and age may all be columns.
+#### A <i>row</i>, also called a record, is a collection of columns that represent a single data point. For example, one row may represent one hospital patient and may have attributes like age, weight, and height.
+#### A <i>table</i> is a collection of rows and columns. This is the most basic unit found in a database and will be the foundation of this tutorial.
+#### A <i>query</i> is a specific selection of columns from a table that can include filters to limit the rows retrieved. A google search is an example of a query.
 
-## _How to Write A SQL_
+## <ins>The 5 Basic SQL Statements</ins>
 #### Since this is a tutorial for beginners, I’m going to show you how to write a query if you wanted to extract data from one table.
 #### There are five components to a basic query:
    - _SELECT_ **(mandatory)**
@@ -26,12 +18,9 @@ IMAGE GOES HERE
    - _GROUP BY_ (optional)
    - _ORDER BY_ (optional)
 #### The structure is as follows:
-<br></br>
-##### SELECT [column_name_1], [column_name_2], [column_name_n]
-##### FROM [table_name]
-##### WHERE [condition 1]
-##### GROUP BY [column_name] 
-##### ORDER BY [column_name]
+`SELECT [column1], [column2]`<br>
+`FROM [table_name]`
+
 <br></br>
 #### Let’s bring back my example as a reference:
 #### _SELECT ID, Name, Age, Weight_lbs, Height_cm_
