@@ -36,5 +36,7 @@
       - ORDER BY customer_id;
 
 ## Next Steps:
-### So you want to learn more? Here is a list of resources to help you continue your SQL learning journey:
-#### - [Aggregate Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Aggregate%20Functions.md)
+#### So you want to learn more? Here is a list of resources to help you continue your SQL learning journey:
+##### - [Aggregate Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Aggregate%20Functions.md)
+##### - [DDL](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/DDL.md)
+##### - [DML](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/DML.md)
