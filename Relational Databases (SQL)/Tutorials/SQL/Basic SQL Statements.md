@@ -37,4 +37,4 @@
 
 ## Next Steps:
 ### So you want to learn more? Here is a list of resources to help you continue your SQL learning journey:
-#### - 
+#### - [Aggregate Functions](https://www.github.com/uvudataclub2022/UVU-2022-2023/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/
