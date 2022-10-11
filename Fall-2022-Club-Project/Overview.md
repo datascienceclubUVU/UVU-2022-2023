@@ -19,17 +19,17 @@
 15. Create Reporting Dashboard to Visualize Our App's Engagement Metrics.
 ### Tools
 #### In order to complete the steps as listed above, we will be using the following tools:
-    * APIs
-    * SQL Server
-    * Pandas (Python Library)
-    * NumPy (Python Library)
-    * Spotipy (Python Library)
-    * SQLAlchemy (Python Library)
-    * PYODBC (Python Library)
-    * PyTorch (Python Library)
-    * Apache Kafka
+- APIs
+- SQL Server
+- Python
+    * [Pandas](https://github.com/uvudataclub2022/UVU-2022-2023/blob/main/Fall-2022-Club-Project/Pandas%20Overview.md)
+    * [Spotipy](https://github.com/uvudataclub2022/UVU-2022-2023/blob/main/Fall-2022-Club-Project/Spotipy%20Overview.md)
+    * [Streamlit](https://github.com/uvudataclub2022/UVU-2022-2023/blob/main/Fall-2022-Club-Project/Streamlit%20Overview.md)
+    * PYODBC
+    * PyTorch
     * FastAPI
-    * Tableau 
+- Apache Kafka
+- Tableau 
 ### Teams
 #### Using the tools and steps listed above, we will break out into the following teams:
     * SOFTWARE ENGINEERING TEAM
