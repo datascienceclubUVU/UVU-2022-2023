@@ -226,50 +226,16 @@ with st.expander('Song Recommendations'):
     
     # create new field to calculate likeness for song metrics
     
-    for row in final_df:
-        if result_df['acousticness'] > final_df['acousticness']:
-            likeness1 = (final_df['acousticness']/result_df['acousticness'])
-        else:
-            likeness1 = (result_df['acousticness']/final_df['acousticness'])
-        
-        if result_df['danceability'] > final_df['danceability']:
-            likeness2 = (final_df['danceability']/result_df['danceability'])
-        else:
-            likeness2 = (result_df['danceability']/final_df['danceability'])
-        
-        if result_df['energy'] > final_df['energy']:
-            likeness3 = (final_df['energy']/result_df['energy'])
-        else:
-            likeness3 = (result_df['energy']/final_df['energy'])
-        
-        if result_df['instrumentalness'] > final_df['instrumentalness']:
-            likeness4 = (final_df['instrumentalness']/result_df['instrumentalness'])
-        else:
-            likeness4 = (result_df['instrumentalness']/final_df['instrumentalness'])
-            
-        if result_df['liveness'] > final_df['liveness']:
-            likeness5 = (final_df['liveness']/result_df['liveness'])
-        else:
-            likeness5 = (result_df['liveness']/final_df['liveness'])
-            
-        if result_df['valence'] > final_df['valence']:
-            likeness6 = (final_df['valence']/result_df['valence'])
-        else:
-            likeness6 = (result_df['valence']/final_df['valence'])
-        
-        likeness_metrics = [likeness1, likeness2, likeness3, likeness4, likeness5, likeness6]
-        likeness_metrics = sum(likeness_metrics)/6
-        final_df['likeness'] = likeness_metrics
+    
     final_df['acousticness'] = round(final_df['acousticness'].astype(float), 3)
     final_df['danceability'] = round(final_df['danceability'].astype(float), 3)
     final_df['energy'] = round(final_df['energy'].astype(float), 3)
     final_df['instrumentalness'] = round(final_df['instrumentalness'].astype(float), 3)
     final_df['liveness'] = round(final_df['liveness'].astype(float), 3)
     final_df['valence'] = round(final_df['valence'].astype(float), 3)
-    final_df = final_df[['Track Name', 'Artist Name', 'likeness', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
+    final_df = final_df[['Track Name', 'Artist Name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
     final_df = final_df.drop_duplicates()
-    final_df = final_df.sort_values(by=['likeness'], ascending=False)
-    final_df = final_df.reset_index()
+    final_df = final_df.sample(frac=1)
     final_df = final_df.style.applymap(highlight_colors, color_if_true='#5EFF33', color_if_false='white', subset=['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence'])
     st.subheader('Recommendations (by likeness)')
     st.dataframe(final_df)
