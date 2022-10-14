@@ -7,41 +7,22 @@
 ##### This allows you to load a single item into a database table.
 `INSERT INTO [table_name] VALUES ([values in order of table columns]), ([values in order of table columns]), ([values in order of table columns]);`
 ##### This allows you to load multiple items into a database table
-`UPDATE [table_name] SET [column_name] = [value] **_WHERE [column_name] = [value]_ (This is optional)**;`
+`UPDATE [table_name] SET [column_name] = [value] // WHERE [condition] (This is optional);`
 ##### This allows you to update column values in a database table.
-- CREATE TABLE [schema_name].[table_name] ([column1] [data type], [column2] [data type], [constraint1]);
-    - This allows you to create a table and specify its columns and their associated data types and specify 
-      its schema within the database in which you are running the statement.
-- CREATE VIEW [view_name] AS ([SQL Query]);
-    - This allows you to create a view (a custom table created from a SEELCT query) within 
-      the database in which you are running the statement.
-- ALTER TABLE [schema_name].[table_name] ADD [column_name] [data type];
-    - This allows you to add a new column to the specified table and specify its data type. 
-- ALTER TABLE [schema_name].[table_name] ALTER COLUMN [column_name] [new data type];
-    - This allows you to change the data type of the specified column in the specified table.
-- DROP TABLE [table_name];
-    - This allows you to remove the specified table from the database in which you are running the statement.
-- DROP VIEW [view_name];
-    - This allows you to remove the specified view from the database in which you are running the statement.
-- DROP DATABASE [database_name];
-    - This allows you to remove the specified database, along with its associated schemas, tables, and views
-      from the server.
-- DROP SCHEMA [schema_name];
-    - This allows you to remove the specified schema from the database in which you are running the statement.
-Example
-- In the example below, I will show you how to use these statements to organize your RDBMS. This example follows a makeshift company who wants to make an organized sales database for managers to keep track of how much sales each of their sales reps bring in:
-    CREATE DATABASE sales;
-    CREATE SCHEMA managers;
-    CREATE TABLE managers.sales_rep (rep_id INT PRIMARY KEY, first_name VARCHAR(255), 
-                                            last_name VARCHAR(255), hire_date DATE, last_day DATE,
-                                            sales_to_date FLOAT, commission_amt FLOAT);
-    CREATE VIEW managers.total_sales_by_rep AS (SELECT rep_id, first_name, last_name, SUM(sales_to_date)
-                                                FROM managers.sales_rep
-                                                WHERE hire_date <= '01/01/2022' AND last_day <= '06/01/2022'
-                                                GROUP BY rep_id, first_name, last_name
-                                                ORDER BY rep_id);
-NEXT STEPS
+`DELETE FROM [table_name] WHERE [condition];`
+##### This allows you to delete items from a database table based on a specified condition.
+## Example
+#### In the example below, I will show you how to use these statements to organize your Relational Database. This example follows the example from the DDL Tutorial where the makeshift company now has a sales database but needs to load data into it and make some changes to existing data:
+    -- The purpose of the USE statement is to specify the database you are using
+    USE sales;
+    -- Add new records to the table from the most recent hires
+    INSERT INTO managers.sales_rep VALUES (123, 'Josh', 'Tyson', '7/2/2022', NULL, 1756.00, 130.12), (124, 'Abbie', 'Tomlinson', '8/16/2022', NULL, 1455.90, 98.77);
+    -- Make change to the total_sales_by_rep view to reflect a lost sale
+    UPDATE VIEW total_sales_by_rep SET net_sales = net_sales - 50.00 WHERE last_name = 'Johnson' AND first_name = 'Jack';
+    -- Delete records that were placed in the table on or before the start of 2017 to get rid of invalid entries
+    DELETE FROM sales_rep WHERE hire_date <= '1/1/2017';
+## NEXT STEPS
 - Falling in love with SQL? You're not alone! Here are some more tutorials to aid you in your SQL learning journey:
-- DML
-- SQL Best Practices
+- Basic SQL Statements
+- Aggregate Functions
 - Subqueries
