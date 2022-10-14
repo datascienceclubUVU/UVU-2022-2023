@@ -49,3 +49,18 @@
     [3]  Arizona      29
     [4]  Ohio         26    
     ...
+### MIN
+##### The _MIN_ function finds the smallest value in the column within the specified group. This is useful to analyze the impacts of economic uncertainty and other factors that may impact store sales within a given time period.
+    - Example (find the lowest price of bananas across each store):
+    SELECT store_name, product_name, MIN(item_price) lowest_price
+    FROM dbo.product_info
+    GROUP BY store_name, product_name
+    ORDER BY lowest_price
+    
+    Results:
+          store_name       |   product_name     |  lowest_price
+    [1]  U-Mart - Phoenix     Bananas (by lb.)     0.55
+    [2]  P-Mart - Akron       Bananas (by lb.)     0.59
+    [3]  L-Mart - Lincoln     Bananas (by lb.)     0.63
+    [4]  B-Mart - Detroit     Bananas (by lb.)     0.67
+    ...
