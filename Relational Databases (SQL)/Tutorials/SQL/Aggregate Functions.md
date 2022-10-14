@@ -54,6 +54,7 @@
     - Example (find the lowest price of bananas across each store):
     SELECT store_name, product_name, MIN(item_price) lowest_price
     FROM dbo.product_info
+    WHERE product_name = 'Bananas (by lb.)'
     GROUP BY store_name, product_name
     ORDER BY lowest_price
     
@@ -64,3 +65,23 @@
     [3]  L-Mart - Lincoln     Bananas (by lb.)     0.63
     [4]  B-Mart - Detroit     Bananas (by lb.)     0.67
     ...
+### MAX
+##### The _MAX_ function finds the largest value in the column within the specified group. This is useful for identifying high performing employees and visualizing trends across product growth.
+    - Example (find the most expensive item in each store):
+    SELECT store_name, product_name, MAX(item_price) highest_price
+    FROM dbo.product_info
+    GROUP BY store_name, product_name
+    ORDER BY highest_price DESC
+    
+    Results:
+          store_name              |   product_name            |  highest_price
+    [1]  R-Mart - Los Angeles        Concrete (100 lb.)         469.55
+    [2]  I-Mart - Newark             Plywood (15 Sheets)        415.99
+    [3]  T-Mart - Salt Lake City     Plastic Shed (12'x17')     400.50
+    [4]  S-Mart - Phoenix            HD Touch Mirror (12")      299.99
+    ...
+ ### Next Steps
+ ##### If you enjoyed this tutorial, you've got to check these out:
+ - [SQL Best Practices](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/SQL%20Best%20Practices.md)
+ - [CTEs](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/CTEs.md)
+ - [Subqueries](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Subqueries.md)
