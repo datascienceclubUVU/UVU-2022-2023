@@ -44,4 +44,4 @@
 
 ## Next Steps
 #### If you thought this tutorial was interesting, check out these awesome tutorials:
-- 
+- [Joins vs. Unions](https://github.com/uvudataclub2022/UVU-2022-2023/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Joins%20vs.%20Unions.md)
