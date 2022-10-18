@@ -13,7 +13,7 @@
 * **Back-End Engineering**
    - This folder includes the following components:
       - Introduction to the core concepts of Back-End Software Engineering.
-      - Java, PHP, and Back-End API Tutorials.
+      - Java, PHP, and Version Control Tutorials.
       - Real-World Projects to help you expand your Back-End Software Engineering portfolio.
       - Resources to interact with industry professionals to learn how large orgs develop robust back-end development environments.
       
