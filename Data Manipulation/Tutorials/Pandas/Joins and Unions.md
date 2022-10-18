@@ -28,3 +28,13 @@
 #### - This is the least used type of join, mostly due to the fact that it usually doesn't serve any practical purpose. This returns all columns and rows from both DataFrames, whether or not they have matching keys. If there is no match between the keys, the column values will be marked as NaN.
     - Example: pd.merge(products, customers, how='outer', left_on='Product_ID', right_on='Product_ID')
 #### Output: ![This is an image!](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip6-e1582610938663.png)
+## Unions
+#### Similar to Relational Databases, Pandas allows you to combine the structures of two or more DataFrames to create one larger DataFrame. To union two or more DataFrames, the .concat function is used. The syntax for this function is described below:
+    - pd.concat([[first dataframe], [second dataframe], [third dataframe]])
+## Examples
+#### Using the same tables as before, we will create one large DataFrame using the example below:
+    - pd.concat([products, customers])
+<p float="left">
+  <img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip1.png" width="500", height="325" />
+  <img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip2.png" width="500" /> 
+</p>
