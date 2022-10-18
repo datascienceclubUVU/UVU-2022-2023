@@ -24,7 +24,7 @@
 * **Machine Learning**
    - This folder includes the following components:
       - Introduction to the idea of Supervised vs. Unsupervised Machine Learning.
-      - TensorFlow, PyTorch, and SageMaker Tutorials.
+      - Linear Regression, Decision Tree, Neural Networks, and many more Tutorials.
       - Real-World Projects for creating robust Image Recognition, Clustering, and Natural Lanuguage Processing Models.
       - Resources to interact with industry professionals to learn more about how large orgs use Machine Learning Models.
 
