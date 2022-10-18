@@ -7,14 +7,6 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # import libraries
 
-# Ethan's first comment
-
-# Chase's first comment
-
-#Kim's first comment
-#Just checking to see if I can push to the repo
-
-# Chad's first comment here!
 
 
 import pandas as pd
@@ -47,7 +39,7 @@ cursor = engine.cursor()
 
 # create initial query
 
-query = pd.read_sql('''SELECT DISTINCT dt.track_name, dt.artist_name, dt.track_uri, da.artist_uri, af.*
+query = pd.read_sql('''SELECT DISTINCT TRIM(dt.track_name) track_name, TRIM(dt.artist_name) artist_name, dt.track_uri, da.artist_uri, af.*
 FROM audio_features2 af 
 JOIN dim_tracks dt ON af.uri = dt.track_uri2
 JOIN dim_artists da ON dt.artist_name = da.artist_name''', engine)
@@ -115,7 +107,7 @@ st.markdown(""" <style>
 
 # create sidebar menu
 
-sidebar_title = st.sidebar.header('Create Your Custom Playlist')
+sidebar_title = st.sidebar.header('Pick Your Favorite Song')
 artists = query['artist_name'].drop_duplicates()
 artists = artists.sort_values()
 artist_choice = st.sidebar.selectbox('Choose an Artist:', artists)
