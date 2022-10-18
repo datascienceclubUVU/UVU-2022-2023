@@ -1,4 +1,4 @@
-# Pandas Overview
+# Introduction to Pandas
 ## Description
 #### Pandas is a Python library that is widely used for data analysis, manipulation, and ingestion. Built on top of the NumPy Python library, Pandas includes a multitude of methods, classes, and data structures.
 ## Data Types
