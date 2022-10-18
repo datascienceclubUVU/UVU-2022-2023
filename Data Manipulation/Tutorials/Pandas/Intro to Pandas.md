@@ -44,4 +44,6 @@
 
 ## Next Steps
 #### If you thought this tutorial was interesting, check out these awesome tutorials:
-- [Joins vs. Unions](https://github.com/uvudataclub2022/UVU-2022-2023/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Joins%20vs.%20Unions.md)
+- [Joins and Unions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Joins%20and%20Unions.md)
+- [Aggregate Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
+- [Filtering Techniques](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Filtering%20Techniques.md)
