@@ -38,3 +38,8 @@
   <img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip1.png" width="500", height="325" />
   <img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip2.png" width="500" /> 
 </p>
+## Next Steps
+#### Now that you have a solid understanding of the similarities between Pandas and SQL, let's explore what else Pandas can do:
+- [Aggregate Functions]
+- [Filtering Techniques]
+- [Pivot vs. Melt]
