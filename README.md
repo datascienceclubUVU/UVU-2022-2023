@@ -6,7 +6,7 @@
 * **Data Processing**
    - This folder includes the following components:
       - Introduction to the idea of Batch vs. Stream Processing
-      - Apache Kafka, Apache Flink, and Apache Spark Tutorials
+      - Workflow Orchestration, Task Automation, and related Tutorials
       - Real-World Projects for implementing Batch and/or Stream Processing solutions.
 * **Data Storage**
    - This folder includes the following components:
