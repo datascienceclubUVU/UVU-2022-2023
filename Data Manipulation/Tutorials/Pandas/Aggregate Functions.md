@@ -58,4 +58,4 @@
 
 ## Next Steps
 #### Congratulations! You have now completed the Beginner level of Pandas. To continue on your learning journey, check out the first Advanced tutorial:
-- [Pivot Tables](link)
+- [Pivot Tables](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20Tables.md)
