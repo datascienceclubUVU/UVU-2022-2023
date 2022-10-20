@@ -36,3 +36,28 @@
 #### Example:
     vehicles.groupby('Type')['Price'].max()
 ![This is an image](Pictures/vehicle_max.png)
+## Other Aggregate Functions for Statistical Analysis
+### describe()
+#### - This method returns a list of descriptive statistics that outline the different numerical features of the DataFrame. To use this method, use the following syntax:
+    [dataframe name].describe()
+#### Example:
+    vehicles.describe()
+![This is an image](Pictures/vehicle_describe.png)
+### std()
+#### - This function returns the standard deviation of each categorical value. To use this function, use the following syntax:
+    [dataframe name].groupby([categorical column name])[[value column name]].sd()
+#### Example:
+    vehicles.groupby('Type')['Price'].std()
+![This is an image](Pictures/vehicle_std.png)
+### var()
+#### - This function returns the variance of each categorical value. To use this function, use the following syntax:
+    [dataframe name].groupby([categorical column name])[[value column name]].var()
+#### Example:
+    vehicles.groupby('Type')['Price'].var()
+![This is an image](pictures/vehicle_var.png)
+
+## Next Steps
+#### Congratulations! You have now completed the Beginner level of Pandas. To continue on your learning journey, check out these tutorials:
+- [Pivot Tables (Recommended)](link)
+- [Date Scaffolding](link)
+- [Big Data Optimization](link)
