@@ -10,7 +10,7 @@
 #### - Just like in Excel and SQL, this function is used to count the number of items within a specified group. In the context of DataFrames, you need to group categorical columns (where there are discrete values) and aggregate by a numerical column. To use this function, use the following syntax:
     [dataframe name].groupby([categorical column name])[[value column name]].aggregate('count')
 #### Example:
-vehicles.groupby('Type')['Price'].aggregate('count')
+    vehicles.groupby('Type')['Price'].aggregate('count')
 ![This is an image](Pictures/vehicle_count.jpg)
 ### sum()
 #### - This is the most basic aggregate function used for analysis. This function is used to add together all the values of the numerical column within each category from the categorical column. To use this function, use the following syntax:
