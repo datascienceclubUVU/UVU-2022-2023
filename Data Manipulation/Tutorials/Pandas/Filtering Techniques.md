@@ -50,6 +50,6 @@
 
 ## Next Steps
 #### Think you know Pandas? Not quite yet. Make sure to check out these tutorials to enhance your knowledge:
-- ![Aggregate Functions (Recommended)](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
-- ![Pivot and Melt](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20and%20Melt.md)
-- ![Date Scaffolding](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
+- [Aggregate Functions (Recommended)](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
+- [Pivot and Melt](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20vs.%20Melt.md)
+- [Date Scaffolding](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
