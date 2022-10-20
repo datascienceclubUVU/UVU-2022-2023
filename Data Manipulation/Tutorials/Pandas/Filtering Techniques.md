@@ -38,3 +38,12 @@
 
     customers.loc[customers['Age'] >= 25, ['Name', 'Age', 'City']]
 ![This is an image](Pictures/customers_over25.png)
+### Filtering Using the .iloc Method
+#### - To help speed up the querying process, DataFrames come with default indexes to help reference rows internally. To help take advantage of this, the .iloc method was introduced. This allows the end user to query a DataFrame by speciying the row's index rather than a condition. This method uses the following syntax:
+    - [dataframe name].iloc[[index number]]
+#### Examples:
+    products.iloc[7]
+![This is an image](Pictures/dataframe_index.png)
+    
+    customers.iloc[[1, 2, 6]]
+![This is an image](Pictures/dataframe_index2.png
