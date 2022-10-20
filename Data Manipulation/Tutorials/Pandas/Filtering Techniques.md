@@ -42,8 +42,13 @@
 #### - To help speed up the querying process, DataFrames come with default indexes to help reference rows internally. To help take advantage of this, the .iloc method was introduced. This allows the end user to query a DataFrame by speciying the row's index rather than a condition. This method uses the following syntax:
     - [dataframe name].iloc[[index number]]
 #### Examples:
-    products.iloc[7]
+    products.iloc[5]
 ![This is an image](Pictures/dataframe_index.png)
     
     customers.iloc[[1, 2, 6]]
-![This is an image](Pictures/dataframe_index2.png
+![This is an image](Pictures/dataframe_index2.png)
+
+## Next Steps
+#### Think you know Pandas? Not quite yet. Make sure to check out these tutorials to enhance your knowledge:
+- ![Aggregate Functions (Recommended)](github.com/uvudataclub2022/UVU-2022-2023/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
+- ![Pivot and Melt](github.com/uvudataclub2022/UVU-2022-2023/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20and%20Melt.md)
