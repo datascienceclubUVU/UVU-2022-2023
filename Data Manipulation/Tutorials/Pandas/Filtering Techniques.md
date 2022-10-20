@@ -4,9 +4,9 @@
 ## DataFrames Used in This Tutorial
 #### To help keep this tutorial consistent, we will be using the "products" and "customers" DataFrames as shown below:
 ### products
-![This is an image!](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip1.png)
+![This is an image!](Pictures/products.png)
 ### customers
-![This is an image!](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip2.png)
+![This is an image!](Pictures/customers.png)
 ## Common Filtering Techniques
 ### Previewing a DataFrame
 #### - When you are working with "larger than memory" DataFrames, it may be helpful to simply preview the first or last few rows. To do this, we can utilize Pandas' head() and tail() methods. These methods use the following syntaxes:
