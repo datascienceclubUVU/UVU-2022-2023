@@ -49,7 +49,5 @@
 ![This is an image](Pictures/dataframe_index2.png)
 
 ## Next Steps
-#### Think you know Pandas? Not quite yet. Make sure to check out these tutorials to enhance your knowledge:
-- [Aggregate Functions (Recommended)](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
-- [Pivot Tables](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20Tables.md)
-- [Date Scaffolding](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
+#### Think you know Pandas? Not quite yet. Make sure to check out the next tutorial to enhance your knowledge:
+- [Aggregate Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md)
