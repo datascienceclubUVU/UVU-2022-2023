@@ -14,10 +14,10 @@
     - [dataframe name].tail([# of rows]*)
         * If you don't specify a number of rows, Pandas will return a default of five rows. 
 #### Examples:
-##### products.head()
-  ![This is an image!](Pictures/products.head.png)
-##### customers.tail(3)
-  ![This is an image!](Pictures/customers.tail.png)
+    products.head()
+  ![This is an image!](Pictures/products_head.png)
+#####   `customers.tail(3)`
+  ![This is an image!](Pictures/customers_tail.png)
 ### Filtering Using the .loc Method
 #### - Similar to SQL, Pandas allows you to specify the columns to return and limit the rows to return based on certain conditions. We can complete these actions in Pandas by using the loc[] method. This method uses the following syntax:
     - [dataframe name].loc[[row conditions]*, [columns to return]**)[[start index]:[end index]]***
@@ -26,4 +26,5 @@
            To specify the columns to return, simply put the column names in a list.
         *** This is optional. This is used to specify the number of rows in the resulting query to return.
 #### Examples:
-##### products.loc[products['Category'] == 'Electronics', 
+    products.loc[products['Category'] == 'Electronics', ['Product_name', 'Price']]
+![This is an image](Pictures/products_electronics.png)
