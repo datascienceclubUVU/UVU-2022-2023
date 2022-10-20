@@ -39,9 +39,7 @@
   <img src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/02/jip2.png" width="500" /> 
 </p>
 <h2> Next Steps </h2>
-<p> Now that you have a solid understanding of the similarities between Pandas and SQL, let's explore what else Pandas can do: </p>
+<p> Now that you have a solid understanding of the similarities between Pandas and SQL, check out the next tutorial: </p>
 <ul>
-    <li> <a href="https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Aggregate%20Functions.md">Aggregate Functions</a></li>
-    <li> <a href="https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Filtering%20Techniques.md">Filtering Techniques (Recommended)</a></li>
-    <li> <a href="https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Pivot%20vs.%20Melt.md">Pivot vs. Melt</li>
-</a></ul>
+    <li> <a href="https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Filtering%20Techniques.md">Filtering Techniques</a></li>
+</ul>
