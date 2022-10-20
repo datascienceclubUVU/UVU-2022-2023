@@ -19,6 +19,12 @@
   
     customers.tail(3)
   ![This is an image!](Pictures/customers_tail.png)
+### Filtering Using DataFrame Queries
+#### - When working with DataFrames, there are multiple ways to do just about everything. An example of this is with filtering. The easiest way to apply a single filter to a DataFrame is to use the following syntax:
+    [dataframe name][[dataframe name][column name] [logical operator] [value]]
+#### Example:
+    products[products['Category'] == 'Fashion']
+![This is an image!](Pictures/dataframe_syntax.png)
 ### Filtering Using the .loc Method
 #### - Similar to SQL, Pandas allows you to specify the columns to return and limit the rows to return based on certain conditions. We can complete these actions in Pandas by using the loc[] method. This method uses the following syntax:
     - [dataframe name].loc[[row conditions]*, [columns to return]**)[[start index]:[end index]]***
