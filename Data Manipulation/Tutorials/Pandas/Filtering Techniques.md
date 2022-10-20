@@ -16,7 +16,8 @@
 #### Examples:
     products.head()
   ![This is an image!](Pictures/products_head.png)
-#####   `customers.tail(3)`
+  
+    customers.tail(3)
   ![This is an image!](Pictures/customers_tail.png)
 ### Filtering Using the .loc Method
 #### - Similar to SQL, Pandas allows you to specify the columns to return and limit the rows to return based on certain conditions. We can complete these actions in Pandas by using the loc[] method. This method uses the following syntax:
@@ -28,3 +29,6 @@
 #### Examples:
     products.loc[products['Category'] == 'Electronics', ['Product_name', 'Price']]
 ![This is an image](Pictures/products_electronics.png)
+
+    customers.loc[customers['Age'] >= 25, ['Name', 'Age', 'City']]
+![This is an image](Pictures/customers_over25.png)
