@@ -54,10 +54,8 @@
     [dataframe name].groupby([categorical column name])[[value column name]].var()
 #### Example:
     vehicles.groupby('Type')['Price'].var()
-![This is an image](pictures/vehicle_var.png)
+![This is an image](Pictures/vehicle_var.png)
 
 ## Next Steps
-#### Congratulations! You have now completed the Beginner level of Pandas. To continue on your learning journey, check out these tutorials:
-- [Pivot Tables (Recommended)](link)
-- [Date Scaffolding](link)
-- [Big Data Optimization](link)
+#### Congratulations! You have now completed the Beginner level of Pandas. To continue on your learning journey, check out the first Advanced tutorial:
+- [Pivot Tables](link)
