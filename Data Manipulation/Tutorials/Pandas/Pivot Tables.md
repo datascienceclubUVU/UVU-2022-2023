@@ -21,3 +21,6 @@
 ## Pivoting a DataFrame
 #### One of the pitfalls of the pivot_table function is the fact that it makes it difficult to switch back and forth between different pivots. Pandas recognizes this pitfall and thus includes the _pivot()_ function. This is very similar to the pivot_table function but allows for the data types and underlying structure of the DataFrame to stay in tact. To use this function, use the following syntax:
     [dataframe name].pivot(index=[[column(s) to group by]], columns=[[columns to display (other than the values and index columns)]], values=[[column(s) to aggregate]], aggfunc[[aggregate function(s)]])
+#### Example:
+    players.pivot(index=['Player', 'Date'], columns=['Session'], values=['Score'])
+![This is an image](Pictures/players_pivot.png)
