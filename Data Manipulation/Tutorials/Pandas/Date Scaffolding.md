@@ -4,3 +4,7 @@
 ## Files Used in This Tutorial
 #### To help keep the examples in this tutorial consistent, please click the link below to download the input file used in this tutorial:
 - [Input File](Files/Player-Training.zip)
+## Date Scaffolding Techniques
+### Filling in Missing Dates
+#### - As mentioned above, sometimes dates will be missing in your dataset. There are various ways to go about solving this problem so we'll start with the most simple method:
+    1. 
