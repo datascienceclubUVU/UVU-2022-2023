@@ -36,4 +36,4 @@
 
 ## Next Steps
 #### Now that you have a solid grasp on the fundamentals of Data Manipulation, let's kick it up a notch with the next tutorial:
-- [Date Scaffolding](github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
+- [Date Scaffolding](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
