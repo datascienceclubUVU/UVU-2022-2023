@@ -24,3 +24,16 @@
 #### Example:
     players.pivot(index=['Player', 'Date'], columns=['Session'], values=['Score'])
 ![This is an image](Pictures/players_pivot.png)
+## Unpivoting a DataFrame
+#### When your DataFrame has a large number of columns, it can be nearly impossible to analyze the data. To help with this issue, Pandas offers the _melt()_ function. This is the complete opposite of the pivot() function. To use this function, use the following syntax:
+    [dataframe name].melt(id_vars=[[column(s) to NOT unpivot]], value_vars[[columns to unpivot]], var_name='[categorical column name]', value_name='[value column name]')
+#### Example:
+##### In the previous example, we pivoted the columns, which thus converted the columns into grouped tuples. To convert this from a multi-level index, complete the following steps:
+    1.  players.droplevel(level=0, axis=1)
+    2.  players.reset_index()
+    3.  players.melt(id_vars=['Player', 'Date'], value_vars=['Agility', 'Cardio', 'Strength Building'], var_name='Session', value_name='Score')
+![This is an image](Pictures/players_unpivot.png)
+
+## Next Steps
+#### Now that you have a solid grasp on the fundamentals of Data Manipulation, let's kick it up a notch with the next tutorial:
+- [Date Scaffolding](github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
