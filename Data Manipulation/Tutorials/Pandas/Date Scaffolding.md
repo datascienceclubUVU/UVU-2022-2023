@@ -7,4 +7,23 @@
 ## Date Scaffolding Techniques
 ### Filling in Missing Dates
 #### - As mentioned above, sometimes dates will be missing in your dataset. There are various ways to go about solving this problem so we'll start with the most simple method:
-    1. 
+##### 1. Setup your Project:
+        import pandas as pd
+        players = pd.read_csv('[file path]')
+        players.head()
+![This is an img](Pictures/players_prev.png)
+##### 2. Organize DataFrame to Identify Missing Dates:
+        players = players.sort_values(by=['Date', 'Player'])
+        players = players[players['Player'] == 'Player 1'].head(25)
+        players.head(10)
+![This is an img](Pictures/players_prev2.png)
+##### 3. Convert Date Convert "Date" Column to Date Data Type and Set as Index:
+        players['Date'] = pd.to_datetime(players['Date'])
+        players = players.set_index('Date')
+        players.head(10)
+![This is an img](Pictures/players_idx.png)
+##### 4. Group by Player and Resample the Date Index and Convert to Discrete Measure:
+        players = players.groupby('Player').resanple('1D').mean()
+        players = players.reset_index()
+        players.head(10)
+![This is an img](Pictures/players_resample.png)
