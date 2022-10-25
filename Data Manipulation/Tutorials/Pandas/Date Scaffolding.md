@@ -104,6 +104,22 @@
                 wimbledon_df['Capital Outstanding Total'] = s2['Monthly Payment']
                 display(lewisham_df.head())
                 display(wimbledon_df.head())
-        g. Create Temporary DataFrame for Remaining Individual Capital
+        g. Create Temporary Dictionary for Remaining Individual Capital
+                d = {'Store': lewisham_df['Store'], 'Capital Outstanding Total': 250000 - lewisham_df['Lewisham Monthly Payment'].cumsum()}
+                d2 = {'Store': wimbledon_df['Store'], 'Capital Outstanding Total': 350000 - wimbledon_df['Wimbledon Monthly Payment'].cumsum()}
         h. Calculate the Reverse Cumulative Sum
+                lewisham_df['Remaining Capital to Repay'] = d['Capital Outstanding Total']
+                wimbledon_df['Remaining Capital to Repay'] = d2['Capital Outstanding Total']
+                display(lewisham_df.head())
+                display(wimbledon_df.head())
         i. Reorganize Columns
+                lewisham_df = lewisham_df[['Monthly Payment Date', 'Store', 'Capital Outstanding Total', 'Remaining Capital to Repay']]
+                wimbledon_df = wimbledon_df[['Monthly Payment Date', 'Store', 'Capital Outstanding Total', 'Remaining Capital to Repay']]
+                display(lewisham_df.head())
+                display(wimbledon_df.head())
+##### 8. Union the DataFrames and Format the Monthly Payment Date Column:
+        final_df = pd.concat([lewisham_df, wimbledon_df])
+        final_df['Monthly Payment Date'] = final_df['Monthly Payment Date'].dt.strftime("%m/%d/%Y")
+        final_df
+#### Output:
+![This is an img](Pictures/amort_final.png)
