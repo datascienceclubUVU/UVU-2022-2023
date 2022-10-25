@@ -127,4 +127,4 @@
 
 ## Next Steps:
 #### Now that you know how to do every commonly used Data Manipulation Technique available in Pandas, check out the next tutorial about how to work with larger-than-memory DataFrames:
-- [Big Data Optimization](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Date%20Scaffolding.md)
+- [Big Data Optimization](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Data%20Manipulation/Tutorials/Pandas/Big%20Data%20Optimization.md)
