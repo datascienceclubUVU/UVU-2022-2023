@@ -37,29 +37,73 @@
         import pandas as pd
         import numpy as np
         from datetime import date
-        import tqdm
+        from tqdm import tqdm
         from dateutil.relativedelta import relativedelta
         import warnings
         warnings.filterwarnings('ignore')
         schedule = pd.read_csv('[file path]')
-        schedule.head()
+        schedule
+![This is an img](Pictures/amort_prev.png)
 ##### 2. Set Value for the Start Date:
         schedule['Today'] = '07/11/2022'
-        schedule.head()
+        schedule
+![This is an img](Pictures/amort_today.png)
 ##### 3. Create a Date Field to Show Repayment Amount:
-        schedule[' Monthly Repayment Amount'] = schedule['Monthly Payment'] * (schedule['% of Monthly Repayment going to Capital'] /100)
-        schedule.head()
+        schedule['Monthly Repayment Amount'] = schedule['Monthly Payment'] * (schedule['% of Monthly Repayment going to Capital'] /100)
+        schedule
+![This is an img](Pictures/amort_repayment.png)
 ##### 4. Create a Field to Show # of Months Remaining on Mortgage:
         schedule['# of Months Remaining'] = round(schedule['Capital Repayment Remaining'] / schedule['Monthly Repayment Amount'], 0)
         schedule['# of Months Remaining'] = schedule['# of Months Remaining'].astype(int)
-        schedule.head()
+        schedule
+![This is an img](Pictures/amort_remaining.png)
 ##### 5. Create a Field to Show When the Mortgage Will Be Paid Off:
         def add_months(start_date, delta_period):
-                end_date = start_date + relativedelta(months=delta_period)
-                return end_date
+            end_date = start_date + relativedelta(months=delta_period)
+            return end_date
         tqdm.pandas()
         schedule['Today'] = pd.to_datetime(schedule['Today'])
-        schedule['Capital Repayment Date'] = schedule.progress_apply(lambda row: add_months(row['Today'], row['# of Months Remaining'], axis = 1)
-        schedule['Capital Repayment Date'] = schedule['Capital Repayment Date'].df.strftime('%m/%d/%Y')
-        schedule.head()
-##### 5. 
+        schedule['Capital Repayment Date'] = schedule.progress_apply(lambda row: add_months(row["Today"], row['# of Months Remaining']), axis= 1)
+        schedule['Capital Repayment Date'] = schedule['Capital Repayment Date'].dt.strftime('%m/%d/%Y')
+        schedule
+![This is an img](Pictures/amort_payoff.png)
+##### 6. Create Two Fields: One to Display the Total Amount of Capital Remaining, and Another to Display the Sum of Monthly Contribution:
+        schedule['Capital Outstanding Total'] = schedule['Capital Repayment Remaining'].sum()
+        schedule['Monthly Payment'] = schedule['Monthly Repayment Amount'].sum()
+        schedule
+![This is an img](Pictures/amort_contribution.png)
+##### 7. Create New DataFrames for Each Store and Complete the following steps:
+        a. Create a Column Speicfying the Individual Monthly Contributions for Each Store
+                lewisham_df = schedule[schedule['Store'] == 'Lewisham']
+                wimbledon_df = schedule[schedule['Store'] == 'Wimbledon']
+                
+                lewisham_df['Lewisham Monthly Payment'] = np.where(lewisham_df['Store'] == 'Lewisham', 900.0, 1045.0)
+                wimbledon_df['Wimbledon Monthly Payment'] = np.where(wimbledon_df['Store'] == 'Wimbledon', 1045.0, 900.0)
+                display(lewisham_df)
+                display(wimbledon_df)
+        b. Convert Repayment Date Column to Datetime
+                lewisham_df['Capital Repayment Date'] = pd.to_datetime(lewisham_df['Capital Repayment Date'])
+                wimbledon_df['Capital Repayment Date'] = pd.to_datetime(wimbledon_df['Capital Repayment Date'])
+                display(lewisham_df)
+                display(wimbledon_df)
+        c. Scaffold the Dates
+                lewisham_df['Monthly Payment Date'] = [pd.date_range(x, y, freq='M') + pd.DateOffset(days=11) for x, y in zip(lewisham_df['Today'], lewisham_df['Capital Repayment Date'])]
+                wimbledon_df['Monthly Payment Date'] = [pd.date_range(x, y, freq='M') + pd.DateOffset(days=11) for x, y in zip(wimbledon_df['Today'], wimbledon_df['Capital Repayment Date'])]
+                display(lewisham_df)
+                display(wimbledon_df)
+        d. Show the Date Scaffold
+                lewisham_df = lewisham_df.explode('Monthly Payment Date')
+                wimbledon_df = wimbledon_df.explode('Monthly Payment Date')
+                display(lewisham_df.head())
+                display(wimbledon_df.head())
+        e. Create a Temporary Dictionary for Remaining Capital
+                s = {'Monthly Payment': 600000 - lewisham_df['Monthly Payment'].cumsum()}
+                s2 = {'Monthly Payment': 600000 - wimbledon_df['Monthly Payment'].cumsum()}
+        f. Calculate the Reverse Cumulative Sum
+                lewisham_df['Capital Outstanding Total'] = s['Monthly Payment']
+                wimbledon_df['Capital Outstanding Total'] = s2['Monthly Payment']
+                display(lewisham_df.head())
+                display(wimbledon_df.head())
+        g. Create Temporary DataFrame for Remaining Individual Capital
+        h. Calculate the Reverse Cumulative Sum
+        i. Reorganize Columns
