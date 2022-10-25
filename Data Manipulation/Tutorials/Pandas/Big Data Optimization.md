@@ -1,1 +1,7 @@
-
+# Advanced Pandas: Big Data Optimization
+## Introduction
+#### When working on Data Science or Data Analytics projects, you may be working with very large datasets (think one million rows+). Although these datasets provide a lot of value, they make it very difficult for your CPU to process the information in a reasonable amount of time. The main issue with working with large datasets is the presence of the _OutOfMemory Error_. How do we solve this problem? Let's dive into the topic of _Parallel Processing_.
+## What is Parallel Processing?
+#### The main limitation associated with Pandas is its relationship with Memory. _Memory_ is the amount of computing resources being used by your local machine's CPU for a given task. When working with massive datasets, your CPU may run out of memory and throw an OutOfMemory Error. To help relieve this problem, Python offers solutions that allow you to execute _Parallel Processing_ is the concept of running multiple tasks simultaneously while dividing the tasks among your CPUs various workers. 
+#### Because Pandas is such as widely used library, various developers have created sister libraries that can work in conjunction with Pandas while allowing parallel processing. Some of the more popular libraries include: PySpark, Pandarallel, Terality, and Dask. For the purposes of this tutorial, we will be comparing Pandas and PySpark.
+## Introduction to PySpark
