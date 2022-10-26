@@ -30,3 +30,17 @@
     GROUP BY CUBE([column_name], [column_name])
 #### Example
 ##### In the example below, we will be looking at the sales by different car makes, models, and drivetrains:
+    SELECT make, model, drivetrain, SUM(sales) vehicle_sales
+    FROM vehicle_inventory
+    GROUP BY CUBE(make, model, drivetrain)
+##### Output:
+    make  |  model  |  drivetrain  |  vehicle_sales
+     Ford |   F-150 |          4WD |           545000
+     Ford |   F-150 |          RWD |           200000
+     Ford |  Ranger |          4WD |           185000
+     Ford |  Ranger |          RWD |            70000
+     NULL |   NULL  |          4WD |           730000  * This shows the total sales for all 4WD models
+     NULL |   NULL  |          RWD |           270000  * This shows the total sales for all RWD models
+     Ford |   F-150 |         NULL |           745000  * This shows the total sales for the Ford F-150
+     Ford |  Ranger |         NULL |           255000  * This shows the total sales for the Ford Ranger
+     Ford |   NULL  |         NULL |          1000000  * This shows the total sales for the "Ford" make
