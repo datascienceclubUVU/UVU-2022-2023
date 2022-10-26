@@ -15,7 +15,7 @@
 #### Example
 ##### In the example below, we will be looking at the cumulative sales by different departments and product categories in a store:
     SELECT department_name, category, SUM(sales) cum_sales
-    FROM sales_totals
+    FROM department_sales
     GROUP BY ROLLUP(department_name, category)
 ##### Output:
     department_name  |  category  |  cum_sales
@@ -52,17 +52,40 @@
     GROUP BY ROLLUP([column_name], [column_name])
 #### Example
 ##### In the example below, we will be using the same data as the first ROLLUP example:
-    SELECT department_name, category, SUM(sales) cum_sales), GROUPING_ID(department_name, category)
-    FROM sales_totals
+    SELECT department_name, category, SUM(sales) cum_sales, GROUPING_ID(department_name, category)
+    FROM department_sales
     GROUP BY ROLLUP(department_name, category)
 ##### Output
     department_name  |  category  |  cum_sales  |  grouping_id
              baking  |     sugar  |      10000  |            0
-             baking  |       oil  |       8500  |            0 *These rows show the most specific level of detail
+             baking  |       oil  |       8500  |            0 *These rows show the first level of detail
              baking  | pots/pans  |       3000  |            0
-             baking  |      NULL  |      21500  |            2 *This row shows the second broadest level of detail
          automotive  |       oil  |       4500  |            0
             cookies  |     sugar  |       2500  |            0
-               NULL  |     sugar  |      12500  |            1 *These rows show the third broadest level of detail
+               NULL  |     sugar  |      12500  |            1 *These rows show the second level of detail
                NULL  |       oil  |      13000  |            1
-               NULL  |      NULL  |      28500  |            3 *This row displays the most broad level of detail
+               NULL  |      NULL  |      28500  |            3 *This row displays the third level of detail
+### GROUPING SETS
+#### The GROUPING SETS extension is almost identical to the CUBE extension, except that you can specify which levels of detail you would like to include in the output. This extension has the following syntax:
+    SELECT [column_name], [column_name], [aggregate_function]([column_name]) [new_column_name]
+    FROM [table_name]
+    GROUP BY GROUPING SETS([column_name], ([column_name], [column_name], ()) * This syntax can be changed depending on your needs
+#### Example
+##### In the example below, we will be using the same data as the first ROLLUP example:
+    SELECT department_name, category, SUM(sales) cum_sales
+    FROM department_sales
+    GROUP BY GROUPING SETS(department_name, category, (department_name, category), ())
+##### Output
+    department_name  |  category  |  cum_sales
+             baking  |     sugar  |      10000 
+             baking  |       oil  |       8500  *These rows show the first level of detail
+             baking  | pots/pans  |       3000
+             baking  |      NULL  |      21500  *These rows show the second level of detail
+         automotive  |       oil  |       4500
+         automotive  |      NULL  |       4500 
+            cookies  |     sugar  |       2500
+            cookies  |      NULL  |       2500
+               NULL  |     sugar  |      12500  *These rows show the second level of detail
+               NULL  |       oil  |      13000
+               NULL  | pots/pans  |       3000
+               NULL  |      NULL  |      28500  *This row displays the third level of detail
