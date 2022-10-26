@@ -22,7 +22,5 @@
     -- Delete records that were placed in the table on or before the start of 2017 to get rid of invalid entries
     DELETE FROM sales_rep WHERE hire_date <= '1/1/2017';
 ## NEXT STEPS
-- Falling in love with SQL? You're not alone! Here are some more tutorials to aid you in your SQL learning journey:
-- [Basic SQL Statements](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Basic%20SQL%20Statements.md)
+#### Thought this was too easy? Check out the next tutorial in this learning series to take it up a notch:
 - [Aggregate Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Aggregate%20Functions.md)
-- [SQL Best Practices](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/SQL%20Best%20Practices.md)
