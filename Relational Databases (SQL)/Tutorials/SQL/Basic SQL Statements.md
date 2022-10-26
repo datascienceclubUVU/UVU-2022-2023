@@ -1,4 +1,4 @@
-# SQL for Beginners
+# Beginner SQL: Basic SQL Statements
 ## <ins>Introduction</ins>
 #### Interested in learning more about the world of databases? Look no further than SQL! This tutorial will be your guide to learn the basic SQL statements. Enjoy!
 
