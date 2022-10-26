@@ -39,4 +39,4 @@
 
 ## Next Steps
 #### Subqueries can be confusing, let's learn a more effective querying method:
-- [CTEs](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/CTEs.md)
+- [CTEs](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/CTEs.md)
