@@ -44,3 +44,25 @@
      Ford |   F-150 |         NULL |           745000  * This shows the total sales for the Ford F-150
      Ford |  Ranger |         NULL |           255000  * This shows the total sales for the Ford Ranger
      Ford |   NULL  |         NULL |          1000000  * This shows the total sales for the "Ford" make
+### ROLLUP with GROUPING_ID
+#### To help identify which grouping set you're viewing, SQL offers the GROUPING_ID function that is used in conjunction with the ROLLUP extension. This extension has the following syntax:
+    SELECT [column_name], [column_name], [aggregate_function]([column_name]) [new_column name], 
+           GROUPING_ID([column_name], [column_name]) [new_column_name]
+    FROM [table_name]
+    GROUP BY ROLLUP([column_name], [column_name])
+#### Example
+##### In the example below, we will be using the same data as the first ROLLUP example:
+    SELECT department_name, category, SUM(sales) cum_sales), GROUPING_ID(department_name, category)
+    FROM sales_totals
+    GROUP BY ROLLUP(department_name, category)
+##### Output
+    department_name  |  category  |  cum_sales  |  grouping_id
+             baking  |     sugar  |      10000  |            0
+             baking  |       oil  |       8500  |            0 *These rows show the most specific level of detail
+             baking  | pots/pans  |       3000  |            0
+             baking  |      NULL  |      21500  |            2 *This row shows the second broadest level of detail
+         automotive  |       oil  |       4500  |            0
+            cookies  |     sugar  |       2500  |            0
+               NULL  |     sugar  |      12500  |            1 *These rows show the third broadest level of detail
+               NULL  |       oil  |      13000  |            1
+               NULL  |      NULL  |      28500  |            3 *This row displays the most broad level of detail
