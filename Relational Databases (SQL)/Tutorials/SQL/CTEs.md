@@ -1,6 +1,6 @@
 # Intermediate SQL: Common Table Expressions (CTEs)
 ## Introduction
-### After reading the tutorial on subqueries, you may have thought to yourself, why on earth would I use these when they are impossible to comprehend? That's a great question. Luckily, the creators of SQL decided to create a much more comprehensive way of writing out multiple queries without using joins or unions: CTEs. **_Common Table Expressions (CTEs)_** are simply subqueries that are chained together though multiple uses of the WITH statement. This makes it significantly easier to read and comprehend long and complex subqueries.
+#### After reading the tutorial on subqueries, you may have thought to yourself, why on earth would I use these when they are impossible to comprehend? That's a great question. Luckily, the creators of SQL decided to create a much more comprehensive way of writing out multiple queries without using joins or unions: CTEs. **_Common Table Expressions (CTEs)_** are simply subqueries that are chained together though multiple uses of the WITH statement. This makes it significantly easier to read and comprehend long and complex subqueries.
 ## CTEs vs. Subqueries
 #### Now that we have discussed why CTEs are superior to subqueries, let's take a visual example to more clearly illustrate the reason behind this:
     Example A (Subquery): SELECT customer_id, first_name, last_name, SUM(order_amt) sales_total
