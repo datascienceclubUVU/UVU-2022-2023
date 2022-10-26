@@ -1,4 +1,4 @@
-# Introduction to SQL Aggregate Functions
+# Basic SQL: Aggregate Functions
 ## Description
 #### _Aggregate Functions_ allow you to alter the level of detail within a database query to view basic statistics within specified groups. All aggregate functions are used in conjunction with the GROUP BY clause (See [Basic SQL Statements](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Basic%20SQL%20Statements.md))
 ## Aggregate Functions
@@ -81,7 +81,5 @@
     [4]  S-Mart - Phoenix            HD Touch Mirror (12")      299.99
     ...
  ### Next Steps
- ##### If you enjoyed this tutorial, you've got to check these out:
- - [SQL Best Practices](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/SQL%20Best%20Practices.md)
- - [CTEs](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/CTEs.md)
+ ##### Now that you have a sloid grasp on the fundamentals of SQL, let's go into more intermediate topics:
  - [Subqueries](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Subqueries.md)
