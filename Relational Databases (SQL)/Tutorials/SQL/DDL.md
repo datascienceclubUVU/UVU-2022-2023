@@ -39,7 +39,5 @@
                                                     GROUP BY rep_id, first_name, last_name
                                                     ORDER BY rep_id);
 ## NEXT STEPS
-#### - Falling in love with SQL? You're not alone! Here are some more tutorials to aid you in your SQL learning journey:
-##### - [DML](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/DML.md)
-##### - [SQL Best Practices](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/SQL%20Best%20Practices.md)
-##### - [Subqueries](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Subqueries.md)
+#### - Falling in love with SQL? You're not alone! Check out the next tutorial to continue your learning journey:
+- [DML](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/DML.md)
