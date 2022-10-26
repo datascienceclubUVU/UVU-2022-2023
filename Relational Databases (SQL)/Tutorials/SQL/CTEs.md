@@ -32,3 +32,5 @@
 ## Conclusion
 #### Although we didn't go into too much depth on the topic of the syntax of CTEs, it's more impotant to understand the use cases of them over subqueries. It's also very important to know when to use subqueries over CTEs or a combination of both. In any of these cases, deep business knowledge is necessary to understand the type of analysis you're trying to conduct and how to most effectively communicate how you got the result.
 ## Next Steps
+#### To finish off the intermediate section of this learning series, let's take a look at how to make better use of the GROUP BY clause:
+- [Group By Extensions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Group%20By%20Extensions.md)
