@@ -1,4 +1,4 @@
-# Data Manipulation Language (DML) Basics
+# Beginner SQL: Data Manipulation Language (DML)
 ## Description
 #### Data Manipulation Language (DML) is the part of SQL that allows you to append, update, and delete items to/from objects within a relational database. These objects include tables, views and schemas.
 ## DML Statements
