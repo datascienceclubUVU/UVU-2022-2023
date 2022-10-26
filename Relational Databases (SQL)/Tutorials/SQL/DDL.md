@@ -1,4 +1,4 @@
-# Data Definition Language (DDL) Basics
+# Beginner SQL: Data Definition Language (DDL)
 ## <ins>Description</ins>
 #### - Data Definition Language (DDL) is the part of SQL that allows you to create, alter, and drop objects within a relational database. These objects include tables, views, schemas, databases, indexes, stored procedures, and triggers.
 ## <ins>DDL Statements</ins>
