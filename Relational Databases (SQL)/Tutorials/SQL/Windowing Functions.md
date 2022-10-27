@@ -1,23 +1,26 @@
-# Advanced SQL: Windowing Functions
+# Advanced SQL: Window Functions
 ## Introduction
-#### One of the most common methods to analyze large amounts of data is to partition the data into individual groups. This can be done using various **_Windowing Functions_**. A **_Windowing Function_** splits the data into individual groups based on a specified boundary (e.g., id, name, date). These are widely used for creating rolling functions, grouping data without changing the level of detail, and making it easier to identify potential duplicates. Let's take a closer look at the different types of windowing functions:
-## Types of Windowing Functions
-#### As you might expect, there are several windowing functions available in SQL. These include the following:
-    - Aggregate Functions (SUM, AVG, and COUNT)
+#### One of the most common methods to analyze large amounts of data is to partition the data into individual groups. This can be done using various **_Window Functions_**. A **_Window Function_** splits the data into individual groups based on a specified boundary (e.g., id, name, date). These are widely used for creating rolling functions, grouping data without changing the level of detail, and making it easier to identify potential duplicates. Let's take a closer look at the different types of windowing functions:
+## Types of Window Functions
+#### As you might expect, there are several window functions available in SQL. These include the following:
     - ROW_NUMBER
     - RANK
     - DENSE_RANK
     - LAG
     - LEAD
-    - NTILE
     - FIRST_VALUE
     - LAST_VALUE
+    - SUM 
+    - AVG
+    - COUNT
+    - NTILE
     - CUME_DIST
     - PERCENT_RANK
 #### It should be noted that all window functions have the following syntax:
     [window_function]() OVER(PARTITION BY [column_name] ORDER BY [column_name] [ASC/DESC])
 #### Because there are many functions listed, we will group them into the following groups: Ranking Functions, Aggregate Functions, Comparison Functions, and Statistical Functions.
 ## Ranking Functions
+#### Within every organization, there is a need to measure attributes between various groups or departments. This allows organizations to create more detailed Key Performance Indicators (KPIs) and allow managers to measure the performance of their employees. THis is the basic premis of ranking window functions.
 ### ROW_NUMBER
 #### The purpose of this function is to specify the index number of each row in each partition. In the example below, we will illustrate how this function can be used in conjunction with CTEs:
     # We are trying to find the first orders placed by our customers
@@ -76,3 +79,41 @@
      south  |  Chevrolet  |      51300  |           2
      south  |    Hyundai  |      47860  |           3
      south  |      Mazda  |      41320  |           4
+## Aggregate Functions
+#### Have you ever heard the term "Running Total" or "Moving Average"? This is the basic premise of the aggregate window functions. These allow you to see the cumulative amounts or moving averages in each group. This method is very similar to the CUBE or ROLLUP Group By Extensions, though these provide a more sophisticated view of your data and tend to be more accurate.
+## SUM
+#### As mentioned above, this function is a more sophisticated version of the ROLLUP Group By Extension. This window function allows you to see the cumulative sum of values within a group over a period of time or a series of events.
+#### Example:
+    # For this example, we will be looking for the cumulative sum of sales by sales rep in each sales team.
+    SELECT team, rep_id, rep_name, sales_amt, SUM(sales_amt) OVER(PARTITION BY team ORDER BY rep_name) running_total
+    FROM team_sales
+    ORDER BY team
+##### Output:
+    team  |    rep_id  |      rep_name  |      sales_amt  |  running_total
+       A  |  16790130  |    Josh Smith  |         600.00  |         600.00
+       A  |  15541210  |   Austin Dust  |         300.00  |         900.00
+       A  |  15898820  | Beverly Starr  |         550.50  |        1450.50
+       A  |  18790610  |    Clark Kent  |         130.75  |        1781.25
+       B  |  17943280  |  Polly Carton  |         425.00  |         425.00
+       B  |  13209930  | Patrick Johns  |        1050.70  |        1475.70
+       B  |  19890410  |  Shelby Shark  |         215.00  |        1690.00
+       B  |  19877610  |    John Adams  |         175.00  |        1865.00
+## AVG
+#### When working with metrics that are based on continuous measures rather than discrete, it can be daunting to calculate the moving average. To help solve this, the average window function allows us to see have averages within a group changes over time.
+#### Example:
+    # For this example, we will be comparing the moving average of wait times at different hospitals.
+    SELECT hospital_name, date, wait_time, AVG(wait_time) OVER(PARTITION BY hospital_name ORDER BY date) moving_average
+    FROM wait_times
+    WHERE date BETWEEN '10-09-2021' AND '10-12-2021'
+    ORDER BY hospital_name
+##### Output:
+        hospital_name  |         date  |  wait_time  |  moving_average
+    St. Joins Central  |   10-09-2021  |      15.20  |           15.20
+    St. Johns Central  |   10-10-2021  |      21.95  |           18.58
+    St. Johns Central  |   10-11-2021  |      13.40  |           16.85
+    St. Johns Central  |   10-12-2021  |      19.88  |           17.61
+       St. Johns East  |   10-09-2021  |       8.71  |            8.71
+       St. Johns East  |   10-10-2021  |      10.77  |            9.74
+       St. Johns East  |   10-11-2021  |       5.44  |            8.31
+       St. Johns East  |   10-12-2021  |       7.65  |            8.15
+    St. Johns Central  |
