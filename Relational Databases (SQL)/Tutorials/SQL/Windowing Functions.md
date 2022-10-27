@@ -6,13 +6,12 @@
     - ROW_NUMBER
     - RANK
     - DENSE_RANK
+    - SUM 
+    - AVG
     - LAG
     - LEAD
     - FIRST_VALUE
     - LAST_VALUE
-    - SUM 
-    - AVG
-    - COUNT
     - NTILE
     - CUME_DIST
     - PERCENT_RANK
@@ -81,7 +80,7 @@
      south  |      Mazda  |      41320  |           4
 ## Aggregate Functions
 #### Have you ever heard the term "Running Total" or "Moving Average"? This is the basic premise of the aggregate window functions. These allow you to see the cumulative amounts or moving averages in each group. This method is very similar to the CUBE or ROLLUP Group By Extensions, though these provide a more sophisticated view of your data and tend to be more accurate.
-## SUM
+### SUM
 #### As mentioned above, this function is a more sophisticated version of the ROLLUP Group By Extension. This window function allows you to see the cumulative sum of values within a group over a period of time or a series of events.
 #### Example:
     # For this example, we will be looking for the cumulative sum of sales by sales rep in each sales team.
@@ -98,14 +97,14 @@
        B  |  13209930  | Patrick Johns  |        1050.70  |        1475.70
        B  |  19890410  |  Shelby Shark  |         215.00  |        1690.00
        B  |  19877610  |    John Adams  |         175.00  |        1865.00
-## AVG
+### AVG
 #### When working with metrics that are based on continuous measures rather than discrete, it can be daunting to calculate the moving average. To help solve this, the average window function allows us to see have averages within a group changes over time.
 #### Example:
     # For this example, we will be comparing the moving average of wait times at different hospitals.
     SELECT hospital_name, date, wait_time, AVG(wait_time) OVER(PARTITION BY hospital_name ORDER BY date) moving_average
     FROM wait_times
     WHERE date BETWEEN '10-09-2021' AND '10-12-2021'
-    ORDER BY hospital_name
+    ORDER BY hospital_name, date
 ##### Output:
         hospital_name  |         date  |  wait_time  |  moving_average
     St. Joins Central  |   10-09-2021  |      15.20  |           15.20
@@ -116,4 +115,41 @@
        St. Johns East  |   10-10-2021  |      10.77  |            9.74
        St. Johns East  |   10-11-2021  |       5.44  |            8.31
        St. Johns East  |   10-12-2021  |       7.65  |            8.15
-    St. Johns Central  |
+## Comparison Functions
+#### Have you ever wondered how stock brokers get rich fast? They take past data and compare it with current data. This is the basic premise of comparison window functions. It takes the current row value and compares it with either the first value, last value, previous value, or future value in the group.
+### LAG
+#### As mentioned above, stock brokers compare past data with current data to predict future outcomes. This is the basic premise of the LAG function. It simply takes the value of the previous row and compares it with the current row.
+#### Example:
+    # For this example, we will compare the stocks of a company over time and compare the past and present values.
+    SELECT company_lbl, date, stock_price, LAG(stock_price, 1) OVER(PARTITION BY company_lbl ORDER BY date) yesterday_price
+    FROM stock_prices
+    WHERE date BETWEEN '7-01-2022' AND '7-04-2022'
+    ORDER BY company_lbl, date
+##### Output:
+    company_lbl  |       date  |  stock_price  |  yesterday_price
+           TSLA  |  7-01-2022  |        75.80  |             NULL
+           TSLA  |  7-02-2022  |        77.50  |            75.80
+           TSLA  |  7-03-2022  |        72.35  |            77.50
+           TSLA  |  7-04-2022  |        65.88  |            72.35
+           AAPL  |  7-01-2022  |       102.44  |             NULL
+           AAPL  |  7-02-2022  |        99.09  |           102.44
+           AAPL  |  7-03-2022  |       105.97  |            99.09
+           AAPL  |  7-04-2022  |       112.90  |           105.97
+### LEAD
+#### As you might imagine, the LEAD function does the complete opposite of the LAG function. Rather than comparing previous values with current values, the LEAD function compares current values with future values.
+#### Example:
+    # We will be using the same query as the LAG example.
+    SELECT company_lbl, date, stock_price, LEAD(stock_price, 1) OVER(PARTITION BY company_lbl ORDER BY date) yesterday_price
+    FROM stock_prices
+    WHERE date BETWEEN '7-01-2022' AND '7-04-2022'
+    ORDER BY company_lbl DESC, date
+##### Output:
+    company_lbl  |       date  |  stock_price  |  yesterday_price
+           TSLA  |  7-01-2022  |        75.80  |            77.50
+           TSLA  |  7-02-2022  |        77.50  |            72.35
+           TSLA  |  7-03-2022  |        72.35  |            65.88
+           TSLA  |  7-04-2022  |        65.88  |             NULL
+           AAPL  |  7-01-2022  |       102.44  |            99.09
+           AAPL  |  7-02-2022  |        99.09  |           105.97
+           AAPL  |  7-03-2022  |       105.97  |           112.90
+           AAPL  |  7-04-2022  |       112.90  |             NULL
