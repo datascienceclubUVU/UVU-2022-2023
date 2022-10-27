@@ -17,9 +17,9 @@
 #### It should be noted that all window functions have the following syntax:
     [window_function]() OVER(PARTITION BY [column_name] ORDER BY [column_name] [ASC/DESC])
 #### Because there are many functions listed, we will group them into the following groups: Ranking Functions, Aggregate Functions, Comparison Functions, and Statistical Functions.
-### Ranking Functions
-#### ROW_NUMBER
-##### The purpose of this function is to specify the index number of each row in each partition. In the example below, we will illustrate how this function can be used in conjunction with CTEs:
+## Ranking Functions
+### ROW_NUMBER
+#### The purpose of this function is to specify the index number of each row in each partition. In the example below, we will illustrate how this function can be used in conjunction with CTEs:
     # We are trying to find the first orders placed by our customers
     WITH customer_orders AS (SELECT id AS customer_id, first_name, last_name, order_amt, num_items, order_date, order_id, 
                             ROW_NUMBER() OVER(PARTITION BY id ORDER BY order_date) row_num 
@@ -40,3 +40,39 @@
     customer_id  |  first_name  |  last_name  |  order_amt  |  num_items  |  order_date  |  order_id  |  row_num
        15219091  |       Jerry  |   Seinfeld  |     787.90  |          4  |   4-12-2020  |   7610923  |         1
        15223175  |      Robert  |       Ross  |     178.10  |          3  |  11-13-2018  |   7561329  |         1
+### RANK
+#### As you might assume, this function is used to rank items within a specified group. This is commonly used to identify the best-selling products, most-productive emmployees, and highest gross profit margins.
+#### Example:
+    # In this query, we are trying to find the best selling car manufacturer in each region of the US.
+    SELECT region, make, num_sales, RANK() OVER(PARTITION BY region ORDER BY num_sales DESC) sales_rank 
+    FROM regional_sales
+##### Output:
+    region  |       make  |  num_sales  |  sales_rank
+     north  |  Chevrolet  |      89500  |           1
+     north  |       Ford  |      89000  |           2
+     north  |     Toyota  |      89000  |           2
+     north  |      Honda  |      84295  |           4
+     north  |    Hyundai  |      81100  |           5
+     south  |       Ford  |      54900  |           1
+     south  |     Toyota  |      51300  |           2
+     south  |  Chevrolet  |      51300  |           2
+     south  |    Hyundai  |      47860  |           4
+     south  |      Mazda  |      41320  |           5
+### DENSE_RANK
+#### The main issue with the RANK function is that it skips ranks when there are duplicate values. This can make it difficult to interpret the results. To help with this, the DENSE_RANK function continues the rank rather than skips. This is usually used in place of the RANK function.
+#### Example:
+    # For this example, we will be running the same query as the RANK example
+    SELECT region, make, num_sales, DENSE_RANK() OVER(PARTITION BY region ORDER BY num_sales DESC) sales_dense_rank
+    FROM regional_sales
+##### Output:
+    region  |       make  |  num_sales  |  sales_dense_rank
+     north  |  Chevrolet  |      89500  |           1
+     north  |       Ford  |      89000  |           2
+     north  |     Toyota  |      89000  |           2
+     north  |      Honda  |      84295  |           3
+     north  |    Hyundai  |      81100  |           4
+     south  |       Ford  |      54900  |           1
+     south  |     Toyota  |      51300  |           2
+     south  |  Chevrolet  |      51300  |           2
+     south  |    Hyundai  |      47860  |           3
+     south  |      Mazda  |      41320  |           4
