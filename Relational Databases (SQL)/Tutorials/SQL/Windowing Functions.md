@@ -23,10 +23,11 @@
 ### ROW_NUMBER
 #### The purpose of this function is to specify the index number of each row in each partition. In the example below, we will illustrate how this function can be used in conjunction with CTEs:
     # We are trying to find the first orders placed by our customers
-    WITH customer_orders AS (SELECT id AS customer_id, first_name, last_name, order_amt, num_items, order_date, order_id, 
-                            ROW_NUMBER() OVER(PARTITION BY id ORDER BY order_date) row_num 
-                            FROM customers 
-                            JOIN orders ON customers.id = orders.customer_id)
+    WITH customer_orders AS 
+    (SELECT id AS customer_id, first_name, last_name, order_amt, num_items, order_date, order_id, 
+        ROW_NUMBER() OVER(PARTITION BY id ORDER BY order_date) row_num 
+        FROM customers 
+        JOIN orders ON customers.id = orders.customer_id)
     SELECT * FROM customer_orders WHERE row_num = 1;
 ##### Output:
     - CTE:
@@ -153,3 +154,49 @@
            AAPL  |  7-02-2022  |        99.09  |           105.97
            AAPL  |  7-03-2022  |       105.97  |           112.90
            AAPL  |  7-04-2022  |       112.90  |             NULL
+### FIRST_VALUE
+#### When comparing items within a specified partition, it may be useful to reference a specific item the the partition as a column value rather than having to scroll up or down to see the value to be compared. To help with this, the FIRST_VALUE function finds the first value in the partition and repeats the value in the new column to make comparisons easier.
+#### Example:
+    # We will be using the same query as the LAG example to find the difference between stocks.
+    WITH first_values AS (
+    SELECT company_lbl, date, stock_price, FIRST_VALUE(stock_price) OVER(PARTITION BY company_lbl ORDER BY date) first_price
+    FROM stcok_prices
+    WHERE date BETWEEN '7-01-2022' AND '7-04-2022'),
+    
+    price_difference AS (
+    SELECT fv.*, SUM(stock_price - first_price) AS price_difference 
+    FROM first_values fv
+    ORDER BY company_lbl, date
+##### Output:
+    company_lbl  |       date  |  stock_price  |  first_price  |  price_difference
+           TSLA  |  7-01-2022  |        75.80  |        75.80  |              0.00
+           TSLA  |  7-02-2022  |        77.50  |        75.80  |              1.70
+           TSLA  |  7-03-2022  |        72.35  |        75.80  |             -3.45
+           TSLA  |  7-04-2022  |        65.88  |        75.80  |             -9.92
+           AAPL  |  7-01-2022  |       102.44  |       102.44  |              0.00
+           AAPL  |  7-02-2022  |        99.09  |       102.44  |             -3.35
+           AAPL  |  7-03-2022  |       105.97  |       102.44  |             -3.53
+           AAPL  |  7-04-2022  |       112.90  |       102.44  |             10.46
+### LAST_VALUE
+#### The LAST_VALUE function does the complete opposite of the FIRST_VALUE function, it simply finds the last value in a partition and repeats in as the column value.
+#### Example:
+    # We will be using the same query as the LAG example to find the difference between stocks.
+    WITH last_values AS (
+    SELECT company_lbl, date, stock_price, LAST_VALUE(stock_price) OVER(PARTITION BY company_lbl ORDER BY date) last_price
+    FROM stcok_prices
+    WHERE date BETWEEN '7-01-2022' AND '7-04-2022'),
+    
+    price_difference AS (
+    SELECT lv.*, SUM(stock_price - last_price) AS price_difference 
+    FROM last_values lv
+    ORDER BY company_lbl, date
+##### Output:
+    company_lbl  |       date  |  stock_price  |   last_price  |  price_difference
+           TSLA  |  7-01-2022  |        75.80  |        65.88  |              9.92
+           TSLA  |  7-02-2022  |        77.50  |        65.88  |             11.62
+           TSLA  |  7-03-2022  |        72.35  |        65.88  |              6.47
+           TSLA  |  7-04-2022  |        65.88  |        65.88  |              0.00
+           AAPL  |  7-01-2022  |       102.44  |       112.90  |            -10.46
+           AAPL  |  7-02-2022  |        99.09  |       112.90  |            -13.81
+           AAPL  |  7-03-2022  |       105.97  |       112.90  |             -6.93
+           AAPL  |  7-04-2022  |       112.90  |       112.90  |              0.00
