@@ -165,8 +165,9 @@
     
     price_difference AS (
     SELECT fv.*, SUM(stock_price - first_price) AS price_difference 
-    FROM first_values fv
-    ORDER BY company_lbl, date
+    FROM first_values fv)
+    
+    SELECT * FROM price_difference ORDER BY company_lbl, date
 ##### Output:
     company_lbl  |       date  |  stock_price  |  first_price  |  price_difference
            TSLA  |  7-01-2022  |        75.80  |        75.80  |              0.00
@@ -188,8 +189,9 @@
     
     price_difference AS (
     SELECT lv.*, SUM(stock_price - last_price) AS price_difference 
-    FROM last_values lv
-    ORDER BY company_lbl, date
+    FROM last_values lv)
+    
+    SELECT * FROM price_difference ORDER BY company_lbl, date
 ##### Output:
     company_lbl  |       date  |  stock_price  |   last_price  |  price_difference
            TSLA  |  7-01-2022  |        75.80  |        65.88  |              9.92
@@ -200,3 +202,26 @@
            AAPL  |  7-02-2022  |        99.09  |       112.90  |            -13.81
            AAPL  |  7-03-2022  |       105.97  |       112.90  |             -6.93
            AAPL  |  7-04-2022  |       112.90  |       112.90  |              0.00
+## Statistical Functions
+#### Although SQL isn't the best tool to use for conducting in-depth statistical analyses, it's still good to know what it can do. SQL provides a few statistical window functions for viewing the correlation and distribution of different values within a given partition.
+### NTILE
+#### When conducting statistical analyses, generating sample data can be a great way to conduct experiments to gain accurate insights. To help with this process, the NTILE function allows you to evenly split your data into different "buckets" or groups of data to compare each group against each other.
+#### Example:
+    # For this query, we will be looking at a survey conducted over different age groups, ethnicities, and genders.
+    SELECT user_id, first_name, last_name, age_group, ethnicity, gender, 
+    survey_score, NTILE(3) OVER(PARTITION BY age_group ORDER BY survey_score DESC) sample_group
+    FROM survey_users
+##### Output:
+    user_id  |      first_name  |      last_name  |  age_group  |       ethnicity  |  gender  |  survey_score  |  sample_group
+      14580  |         Jillian  |         Jordan  |      18-25  |    Non-Hispanic  |       F  |            24  |             1
+      14581  |          Austin  |         Jordan  |      18-25  |    Non-Hispanic  |       M  |            22  |             1
+      14565  |          Joshua  |           Redd  |      18-25  |    Non-Hispanic  |       M  |            20  |             2
+      14533  |          Angela  |       Browning  |      18-25  |    Non-Hispanic  |       F  |            18  |             2
+      14619  |           Kevin  |           Hart  |      18-25  |    Non-Hispanic  |       M  |            16  |             3
+      14602  |          Ashlee  |           Ruiz  |      18-25  |        Hispanic  |       F  |            12  |             3
+      14179  |           Bruce  |          Smith  |      26-40  |    Non-Hispanic  |       M  |            29  |             1
+      14235  |         Natalie  |         Bishop  |      26-40  |    Non-Hispanic  |       F  |            26  |             1
+      14231  |         McKenna  |        Mullens  |      26-40  |        Hispanic  |       F  |            24  |             2
+      14229  |            Nate  |        Lillard  |      26-40  |    Non-Hispanic  |       M  |            24  |             2
+      14211  |          Morgan  |         Parker  |      26-40  |    Non-Hispanic  |       F  |            21  |             3
+      14314  |          Evelyn  |        Johnson  |      26-40  |    Non-Hispanic  |       F  |            19  |             3
