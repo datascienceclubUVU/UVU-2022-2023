@@ -225,3 +225,45 @@
       14229  |            Nate  |        Lillard  |      26-40  |    Non-Hispanic  |       M  |            24  |             2
       14211  |          Morgan  |         Parker  |      26-40  |    Non-Hispanic  |       F  |            21  |             3
       14314  |          Evelyn  |        Johnson  |      26-40  |    Non-Hispanic  |       F  |            19  |             3
+### CUME_DIST
+#### When managers ask for the top 5% of sales reps by net sales, there are multiple ways to compute this equation. However, rather than using various statistical algorithms, SQL provides the CUME_DIST window function to find the cumulative distribution of values within a partition.
+#### Example:
+    # For this example, we will be looking for the top performing students in each class
+    SELECT student_id, first_name, last_name, class, exam_score, CUME_DIST() OVER(PARTITION BY class ORDER BY exam_score DESC) score_percentile
+    FROM exam_scores
+    JOIN students ON exam_scores.student_id = students.id
+##### Output:
+    student_id  |          first_name  |          last_name  |        class  |  exam_score  |  score_distribution
+       7812340  |             Chelsea  |               Ying  |     ECON2010  |         100  |                 0.1
+       7812345  |              Samuel  |           Jennings  |     ECON2010  |          97  |                 0.2
+       7812391  |            Jennifer  |             Larson  |     ECON2010  |          95  |                 0.3
+       7812311  |             Marissa  |           Sterling  |     ECON2010  |          92  |                 0.4
+       7812314  |                Mark  |            Simmons  |     ECON2010  |          88  |                 0.5
+       7812322  |              Lauren  |             Jessop  |     ECON2010  |          87  |                 0.6
+       7812319  |              Joseph  |            Simmons  |     ECON2010  |          84  |                 0.7
+       7812344  |               Jacob  |           Bautista  |     ECON2010  |          80  |                 0.8
+       7812302  |              Collin  |            Jenkins  |     ECON2010  |          77  |                 0.9
+       7812312  |              Daniel  |              Smith  |     ECON2010  |          68  |                   1
+        *The distributions mean that x% of students scored at least that score or higher.
+### PERCENT_RANK
+#### The PERCENT_RANK computes the exact same equation as CUME_DIST, though shows the percentile associated with the value rather than the distribution.
+#### Example:
+    # For this example, we will be using the exact same query as CUME_DIST
+    SELECT student_id, first_name, last_name, class, exam_score, PERCENT_RANK() OVER(PARTITION BY class ORDER BY exam_score DESC) score_percentile
+    FROM exam_scores
+    JOIN students ON exam_scores.student_id = students.id
+    student_id  |          first_name  |          last_name  |        class  |  exam_score  |  score_distribution
+       7812340  |             Chelsea  |               Ying  |     ECON2010  |         100  |                   1
+       7812345  |              Samuel  |           Jennings  |     ECON2010  |          97  |                 0.9
+       7812391  |            Jennifer  |             Larson  |     ECON2010  |          95  |                 0.8
+       7812311  |             Marissa  |           Sterling  |     ECON2010  |          92  |                 0.7
+       7812314  |                Mark  |            Simmons  |     ECON2010  |          88  |                 0.6
+       7812322  |              Lauren  |             Jessop  |     ECON2010  |          87  |                 0.5
+       7812319  |              Joseph  |            Simmons  |     ECON2010  |          84  |                 0.4
+       7812344  |               Jacob  |           Bautista  |     ECON2010  |          80  |                 0.3
+       7812302  |              Collin  |            Jenkins  |     ECON2010  |          77  |                 0.2
+       7812312  |              Daniel  |              Smith  |     ECON2010  |          68  |                   1
+            *The percentiles measure the % of students below that given score.
+## Next Steps
+#### Wow. That was a lot. If you're ready to learn even more, check out the next tutorial in this learning series:
+- 
