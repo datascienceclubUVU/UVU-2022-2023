@@ -266,4 +266,4 @@
             *The percentiles measure the % of students below that given score.
 ## Next Steps
 #### Wow. That was a lot. If you're ready to learn even more, check out the next tutorial in this learning series:
-- 
+- [Data Cleaning Operations](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Data%20Cleaning%20Operations)
