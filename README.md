@@ -1,23 +1,24 @@
-# Welcome to the UVU Data Science Club 2022-23!
-
-## **_WEEKLY MEETING INFORMATION_**
-### WHEN: Wednesdays @ 7:00 PM 
-### WHERE: CS 615
-### WHO: YOU! (and your friends ;)
-### WHAT: (see "Contents" section below)
-
-###
-### CONTACT INFO: SLACK: [uvudatascienceclub.slack.com](uvudatascienceclub.slack.com) |  EMAIL: uvudataclub@gmail.com
-
-
-#### This repository is a central location for collaborating on projects and delegating tasks. If you have any questions regarding current projects, project responsibilities, or would like to propose a new project, please send Chase a message via Slack.
-## ~ CONTENTS ~
-###  _BRANCHES_:
-* **Data Science**
-   - Interested in learning more about Machine Learning, Neural Networks, and other Data Science topics? Check out some of the projects and tutorials included in this branch!
-* **Data Engineering**
-   - Want to know more about ETL, Batch vs. Stream Processing, and other Data Engineering topics? Check out some of the projects and tutorials included in this branch!
-* **Data Analytics**
-  - Can't stop thinking about Data Visualization, Business Intelligence, and other Data Analytics topics? Check out some of the awesome resources found in this branch!
-* **Software Engineering**
-  - Ready to start exploring next-generation feature engineering topics such as Node/ReactJS, APIs, and CI/CD? This branch is for YOU!
+# Welcome to the _Data Analytics_ Branch!
+## <ins>CONTENTS</ins>
+* **Data Visualization**
+   - This folder includes the following components:
+      - Tableau/Power BI tutorials for beginners.
+      - Tableau/Power BI challenges to help you improve your Data Viz skills.
+      - Real-World Data Viz projects to help you expand your Resume and ePortfolio.
+* **Relational Databases (SQL)**
+   - This folder includes the following components:
+      - SQL and Relational Database Management tutorials for beginners.
+      - SQL challenges to help you become a master Query Writer.
+      - Best practices to become an expert in Database Administration and Security.
+      - Real-World SQL Interview questions for Data Analysts to help you get the best job possible.
+* **Data Manipulation**
+  - This folder includes the following components:
+      - Pandas, Tableau Prep, and Alteryx tutorials for beginners.
+      - Data Manipulation challenges to enhance your understanding of the various techniques.
+      - Guidelines for effective and efficient data manipulation between tools.
+      - Real-World projects to introduce you to the new world of Analytics Engineering.
+* **Advanced Topics**
+  - This folder includes the following components:
+      - Tutorials related to advanced analytic programming languages such as R.
+      - Resources to further your understanding of Big Data Analytics.
+      - Real-World projects aimed towards more senior students who want to prepare for interviews.
