@@ -29,3 +29,8 @@
     - RIGHT([column], [number of characters]) -- This returns only the number of characters specified
                                                  starting from the right side of the string
 #### Trimming strings is a very common task invovled with data analysis and manipulation and should be practiced on a regular basis. Although these functions seem to be very simple, they tend to be very inefficient. Because of this, it's useful to understand how to extract substrings.
+## Extracting Substrings
+#### As mentioned previously, trimming strings tends to be inefficient and can cause issues among strings with different lengths. To help with this issue, SQL Server and other RDBMSs provide the following functions to extract **_substrings_**, or partial strings from longer strings, from columns in a database table:
+    - SUBSTRING([column OR value], [starting character number], [ending character number])
+    - REPLACE([column or value], [character to replace], [new character])
+#### Extracting substrings can make the difference between a query taking an hour and taking 10 minutes. Why is this? Simply put, most RDBMSs rely on RAM to run queries and long strings take a lot of processing power, thus when you trim the strings, the runtime can go down significantly. The primary difference between the two functions listed above is that the SUBSTRING function returns a fixed portion of each string, whereas the REPLACE function universally cleans the data in the column or string. Depending on the use case, these can be either very powerful or very damaging to the quality of your output data.
