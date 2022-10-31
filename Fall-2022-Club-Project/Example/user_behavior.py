@@ -7,13 +7,6 @@ Python libraries allow users to extend the abilities of the language compiler. F
 
 # import libraries
 
-# Ethan's first comment
-
-# Chase's first comment
-
-#Kim's first comment
-
-# Chad's first comment here!
 
 
 import pandas as pd
@@ -21,7 +14,6 @@ import numpy as np
 import streamlit as st
 import plotly.express as px
 from random import seed
-import pyodbc
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
@@ -41,21 +33,11 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # establish SQL Server connection
 
-engine = pyodbc.connect("Driver={ODBC Driver 13 for SQL Server};""Server=LAPTOP-V3754MEK;""Database=Spotify;""Trusted_Connection=yes;")
-cursor = engine.cursor()
 
-# create initial query
+# read data from parquet file
 
-query = pd.read_sql('''SELECT DISTINCT dt.track_name, dt.artist_name, dt.track_uri, da.artist_uri, af.*
-FROM audio_features2 af 
-JOIN dim_tracks dt ON af.uri = dt.track_uri2
-JOIN dim_artists da ON dt.artist_name = da.artist_name''', engine)
+query = pd.read_parquet("code_/tracks.parquet.gzip")
 
-# transform query fields
-
-query['music_key'] = query['music_key'].map({0: 'C', 1: 'C#/Db', 2: 'D', 3: 'D#/Eb', 4: 'E', 5: 'F', 6: 'F#/Gb', 7: 'G', 8: 'G#/Ab', 9: 'A', 10: 'A#/Bb', 11: 'B'})
-query['modal'] = query['modal'].map({'0': 'Minor', '1': 'Major'})
-query['time_signature'] = query['time_signature'].map({'3': '3/4', '4': '4/4', '5': '5/4', '6': '6/4', '7': '7/4'})
 
 # create metrics for analysis
 
@@ -114,7 +96,7 @@ st.markdown(""" <style>
 
 # create sidebar menu
 
-sidebar_title = st.sidebar.header('Create Your Custom Playlist')
+sidebar_title = st.sidebar.header('Pick Your Favorite Song')
 artists = query['artist_name'].drop_duplicates()
 artists = artists.sort_values()
 artist_choice = st.sidebar.selectbox('Choose an Artist:', artists)
@@ -127,9 +109,6 @@ output_bpm = query['tempo'].loc[(query['track_name'] == track_choice) & (query['
 output_bpm = output_bpm.astype(float)
 output_bpm = np.round(output_bpm, decimals=0)
 output_bpm = output_bpm.astype(int)
-output_key = query['music_key'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
-output_mode = query['modal'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
-output_sig = query['time_signature'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
 uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
 
 
@@ -177,12 +156,7 @@ with col1:
 col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 with col1:
     bpm_ban = st.markdown(f'''<p class="header">BPM</p><p class="ban-font">{output_bpm}</p>''', unsafe_allow_html=True)
-with col2:
-    key_ban = st.markdown(f'''<p class="header2">Key</p><p class="ban-font2">{output_key}</p>''', unsafe_allow_html=True)
-with col3:
-    mode_ban = st.markdown(f'''<p class="header3">Mode</p><p class="ban-font3">{output_mode}</p>''', unsafe_allow_html=True)
-with col4:
-    sig_ban = st.markdown(f'''<p class="header4">Time Signature</p><p class="ban-font4">{output_sig}</p>''', unsafe_allow_html=True)
+
 
 # create data visualization using new query from uri output
 
@@ -202,12 +176,9 @@ with st.expander('Metric Definitions'):
 
 with st.expander('Song Recommendations'):
     st.subheader('Your Song')
-    result_query = pd.read_sql(f'''SELECT dt.track_name, dt.album_name, da.artist_uri, da.artist_name, af.* 
-                               FROM audio_features2 af 
-                               JOIN dim_tracks dt ON dt.track_uri2 = af.uri 
-                               JOIN dim_artists da ON da.artist_name = dt.artist_name 
-                               WHERE dt.track_uri2 = ?''', engine, params=[uri_output])
+    result_query = query.loc[query['track_uri'] == uri_output]
     result_query = result_query.drop_duplicates()
+    result_query = result_query.reset_index()
     result_df = pd.DataFrame(result_query)
     result_df = result_df[['track_name', 'artist_name', 'album_name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence', 'artist_uri', 'uri']]
     st.dataframe(result_df)
@@ -217,59 +188,29 @@ with st.expander('Song Recommendations'):
     
     result_list2 = pd.json_normalize(sp.recommendations(seed_tracks=[result_df['uri'][0]], seed_artists=[result_df['artist_uri'][0]], limit=25), record_path=['tracks', ['artists']])
     
-    # create output dataframe for song recommendations
-    
     result_list2 = result_list2.merge(query, left_on='uri', right_on='artist_uri')
     result_list2 = result_list2.rename(columns={'name': 'Artist Name', 'uri_x': 'Artist URI'})
     result_list2 = result_list2.rename(columns={'track_name': 'Track Name'})
-    final_df = result_list2[['Track Name', 'Artist Name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']].head(25)
+    result_list2 = result_list2[['Track Name', 'Artist Name', 'album_name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
+    final_df = result_list2.head(25)
     
+    result_df = result_df.reset_index()
+    final_df = final_df.reset_index()
+
     # create new field to calculate likeness for song metrics
     
-    for row in final_df:
-        if result_df['acousticness'] > final_df['acousticness']:
-            likeness1 = (final_df['acousticness']/result_df['acousticness'])
-        else:
-            likeness1 = (result_df['acousticness']/final_df['acousticness'])
+
         
-        if result_df['danceability'] > final_df['danceability']:
-            likeness2 = (final_df['danceability']/result_df['danceability'])
-        else:
-            likeness2 = (result_df['danceability']/final_df['danceability'])
-        
-        if result_df['energy'] > final_df['energy']:
-            likeness3 = (final_df['energy']/result_df['energy'])
-        else:
-            likeness3 = (result_df['energy']/final_df['energy'])
-        
-        if result_df['instrumentalness'] > final_df['instrumentalness']:
-            likeness4 = (final_df['instrumentalness']/result_df['instrumentalness'])
-        else:
-            likeness4 = (result_df['instrumentalness']/final_df['instrumentalness'])
-            
-        if result_df['liveness'] > final_df['liveness']:
-            likeness5 = (final_df['liveness']/result_df['liveness'])
-        else:
-            likeness5 = (result_df['liveness']/final_df['liveness'])
-            
-        if result_df['valence'] > final_df['valence']:
-            likeness6 = (final_df['valence']/result_df['valence'])
-        else:
-            likeness6 = (result_df['valence']/final_df['valence'])
-        
-        likeness_metrics = [likeness1, likeness2, likeness3, likeness4, likeness5, likeness6]
-        likeness_metrics = sum(likeness_metrics)/6
-        final_df['likeness'] = likeness_metrics
+    # create new field to calculate likeness for song metrics
+    
     final_df['acousticness'] = round(final_df['acousticness'].astype(float), 3)
     final_df['danceability'] = round(final_df['danceability'].astype(float), 3)
     final_df['energy'] = round(final_df['energy'].astype(float), 3)
     final_df['instrumentalness'] = round(final_df['instrumentalness'].astype(float), 3)
     final_df['liveness'] = round(final_df['liveness'].astype(float), 3)
     final_df['valence'] = round(final_df['valence'].astype(float), 3)
-    final_df = final_df[['Track Name', 'Artist Name', 'likeness', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
+    final_df = final_df[['Track Name', 'Artist Name', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence']]
     final_df = final_df.drop_duplicates()
-    final_df = final_df.sort_values(by=['likeness'], ascending=False)
-    final_df = final_df.reset_index()
     final_df = final_df.style.applymap(highlight_colors, color_if_true='#5EFF33', color_if_false='white', subset=['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'valence'])
     st.subheader('Recommendations (by likeness)')
     st.dataframe(final_df)
