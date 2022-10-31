@@ -36,7 +36,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # read data from parquet file
 
-query = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\GitHub\\UVU-2022-2023\\Fall-2022-Club-Project\\Example\\tracks.parquet.gzip")
+query = pd.read_parquet("C:\Users\Chase\OneDrive\Documents\GitHub\UVU-2022-2023\Fall-2022-Club-Project\Example\tracks.parquet.gzip")
 
 
 # create metrics for analysis
