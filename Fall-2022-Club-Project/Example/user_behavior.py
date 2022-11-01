@@ -119,10 +119,6 @@ tracks = tracks.sort_values()
 track_choice = st.sidebar.selectbox('Choose a Song', tracks)
 empty = st.sidebar.text('')
 output = query['uri'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].values
-output_bpm = query['tempo'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
-output_bpm = output_bpm.astype(float)
-output_bpm = np.round(output_bpm, decimals=0)
-output_bpm = output_bpm.astype(int)
 uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
 
 
@@ -157,19 +153,6 @@ with col3:
     album_image = st.markdown(f'<img class= "image" src={img_url} width="125" height="125"></img>', unsafe_allow_html=True)
 with col4:
     st.markdown(f'<p class="track">{track_choice}</p>\n<p class="artist">{artist_choice}</p>', unsafe_allow_html=True)
-    
-# create BANs for data visualizations
-
-col1, col2, col3, col4, col5 = st.columns([1, 2, 1, 1, 1])
-with col1:
-    st.text('')
-    st.text('')
-    st.text('')
-    st.text('')
-    filters_txt = st.markdown('<h4>Features</h4><br><br>', unsafe_allow_html=True)
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-with col1:
-    bpm_ban = st.markdown(f'''<p class="header">BPM</p><p class="ban-font">{output_bpm}</p>''', unsafe_allow_html=True)
 
 
 # create data visualization using new query from uri output
@@ -180,6 +163,9 @@ fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hov
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
+
+# create BANS for data visualiztion
+print(viz_query['tempo'])
 
 # create drop-down menu to display definitions for each metric
 
