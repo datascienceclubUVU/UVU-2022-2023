@@ -37,19 +37,19 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # read data from parquet file
 
-source1 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks1.parquet.gzip")
-source2 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks2.parquet.gzip")
-source3 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks3.parquet.gzip")
-source4 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks4.parquet.gzip")
-source5 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks5.parquet.gzip")
-source6 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks6.parquet.gzip")
-source7 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks7.parquet.gzip")
-source8 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks8.parquet.gzip")
-source9 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks9.parquet.gzip")
-source10 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks10.parquet.gzip")
-source11 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks11.parquet.gzip")
-source12 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks12.parquet.gzip")
-source13 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks13.parquet.gzip")
+source1 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks1.parquet.gzip")
+source2 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks2.parquet.gzip")
+source3 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks3.parquet.gzip")
+source4 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks4.parquet.gzip")
+source5 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks5.parquet.gzip")
+source6 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks6.parquet.gzip")
+source7 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks7.parquet.gzip")
+source8 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks8.parquet.gzip")
+source9 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks9.parquet.gzip")
+source10 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks10.parquet.gzip")
+source11= pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks11.parquet.gzip")
+source12 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks12.parquet.gzip")
+source13 = pd.read_parquet("C:\\Users\\Chase\\OneDrive\\Documents\\Career Development\\Tech Clubs Website\\tracks13.parquet.gzip")
 
 query = pd.concat([source1, source2, source3, source4, source5, source6, source7, source8, source9, source10, source11, source12, source13])
 
@@ -120,11 +120,28 @@ tracks = tracks.sort_values()
 track_choice = st.sidebar.selectbox('Choose a Song', tracks)
 empty = st.sidebar.text('')
 output = query['uri'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].values
+
+# Create Metrics
+
+output_rank = query['popularity_rank'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
+output_rank = output_rank.astype(int)
+output_rank = np.round(output_rank, decimals=0)
+
 output_bpm = query['tempo'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
 output_bpm = output_bpm.astype(float)
 output_bpm = np.round(output_bpm, decimals=0)
 output_bpm = output_bpm.astype(int)
 uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
+
+output_occurrences = query['num_occurrences'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
+output_occurrences = output_occurrences.astype(int)
+output_occurrences = np.round(output_occurrences, decimals=0)
+
+output_duration = query['duration_ms'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
+output_duration = output_duration.astype(int)
+output_duration = np.round(output_duration, decimals=0)
+output_duration = output_duration / 60000
+output_duration = np.round(output_duration, decimals=2)
 
 
 viz_query = query2.loc[query2['uri'] == uri_output]
@@ -159,29 +176,26 @@ with col3:
 with col4:
     st.markdown(f'<p class="track">{track_choice}</p>\n<p class="artist">{artist_choice}</p>', unsafe_allow_html=True)
     
-# create BANs for data visualizations
-
-col1, col2, col3, col4, col5 = st.columns([1, 2, 1, 1, 1])
-with col1:
-    st.text('')
-    st.text('')
-    st.text('')
-    st.text('')
-    filters_txt = st.markdown('<h4>Features</h4><br><br>', unsafe_allow_html=True)
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-with col1:
-    bpm_ban = st.markdown(f'''<p class="header">BPM</p><p class="ban-font">{output_bpm}</p>''', unsafe_allow_html=True)
 
 
 # create data visualization using new query from uri output
 
+st.markdown('<br><br><h4>Song Analysis</h4>', unsafe_allow_html=True)
 
-
-fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hover_name='metrics', hover_data={'score':True, 'metrics':False}, width=750, height=600, color_continuous_scale='Sunset', color='score', range_color=[0.0,1.0], template='plotly', title='Song Metrics')
+fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hover_name='metrics', hover_data={'score':True, 'metrics':False}, width=750, height=650, color_continuous_scale='Sunset', color='score', range_color=[0.0,1.0], template='plotly')
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
-st.metric('BPM', value=128)
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+with col1:
+    st.metric(label='Popularity Rank', value=output_rank)
+with col2:
+    st.metric(label='# of Occurrences', value=output_occurrences)
+with col3:
+    st.metric(label='BPM', value=output_bpm)
+with col4:
+    st.metric(label= 'Duration (Minutes)', value=output_duration)
+
 # create drop-down menu to display definitions for each metric
 
 with st.expander('Metric Definitions'):
