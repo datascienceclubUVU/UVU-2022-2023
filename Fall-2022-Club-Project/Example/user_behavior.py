@@ -36,7 +36,21 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # read data from parquet file
 
-query = pd.read_parquet("Fall-2022-Club-Project/Example/tracks1.parquet.gzip")
+source1 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks1.parquet.gzip")
+source2 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks2.parquet.gzip")
+source3 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks3.parquet.gzip")
+source4 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks4.parquet.gzip")
+source5 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks5.parquet.gzip")
+source6 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks6.parquet.gzip")
+source7 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks7.parquet.gzip")
+source8 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks8.parquet.gzip")
+source9 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks9.parquet.gzip")
+source10 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks10.parquet.gzip")
+source11 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks11.parquet.gzip")
+source12 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks12.parquet.gzip")
+source13 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks13.parquet.gzip")
+
+query = pd.concat([source1, source2, source3, source4, source5, source6, source7, source8, source9, source10, source11, source12, source13])
 
 
 # create metrics for analysis
