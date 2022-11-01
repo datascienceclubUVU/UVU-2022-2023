@@ -181,7 +181,7 @@ fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hov
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
-
+st.text(output_bpm)
 # create drop-down menu to display definitions for each metric
 
 with st.expander('Metric Definitions'):
