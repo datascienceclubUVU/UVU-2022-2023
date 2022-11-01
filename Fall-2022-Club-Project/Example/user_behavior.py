@@ -55,7 +55,7 @@ query = pd.concat([source1, source2, source3, source4, source5, source6, source7
 
 # create metrics for analysis
 
-query2 = pd.melt(query, id_vars=['uri'], var_name='metrics', value_name='score', value_vars=['instrumentalness', 'danceability', 'energy', 'acousticness', 'valence', 'liveness'])
+query2 = pd.melt(query, id_vars=['uri'], var_name='metrics', value_name='score', value_vars=['instrumentalness', 'danceability', 'energy', 'acousticness', 'valence', 'liveness', 'tempo'])
 
 
 
