@@ -19,6 +19,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 # define function to highlight output dataframe cells based on value
 
+
 def highlight_colors(val, color_if_true, color_if_false):
     color = color_if_true if val >= 0.75 and val <= 1.0 else color_if_false
     return 'background-color: {}'.format(color)
@@ -31,7 +32,10 @@ secret = '2a755cb04a18406b9394dbef2f8069dd'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-# read data from parquet files
+# establish SQL Server connection
+
+
+# read data from parquet file
 
 source1 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks1.parquet.gzip")
 source2 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks2.parquet.gzip")
@@ -116,6 +120,10 @@ tracks = tracks.sort_values()
 track_choice = st.sidebar.selectbox('Choose a Song', tracks)
 empty = st.sidebar.text('')
 output = query['uri'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].values
+output_bpm = query['tempo'].loc[(query['track_name'] == track_choice) & (query['artist_name'] == artist_choice)].drop_duplicates().values
+output_bpm = output_bpm.astype(float)
+output_bpm = np.round(output_bpm, decimals=0)
+output_bpm = output_bpm.astype(int)
 uri_output = st.sidebar.selectbox('Select the URI:', options=(output))
 
 
@@ -150,6 +158,19 @@ with col3:
     album_image = st.markdown(f'<img class= "image" src={img_url} width="125" height="125"></img>', unsafe_allow_html=True)
 with col4:
     st.markdown(f'<p class="track">{track_choice}</p>\n<p class="artist">{artist_choice}</p>', unsafe_allow_html=True)
+    
+# create BANs for data visualizations
+
+col1, col2, col3, col4, col5 = st.columns([1, 2, 1, 1, 1])
+with col1:
+    st.text('')
+    st.text('')
+    st.text('')
+    st.text('')
+    filters_txt = st.markdown('<h4>Features</h4><br><br>', unsafe_allow_html=True)
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+with col1:
+    bpm_ban = st.markdown(f'''<p class="header">BPM</p><p class="ban-font">{output_bpm}</p>''', unsafe_allow_html=True)
 
 
 # create data visualization using new query from uri output
@@ -160,8 +181,6 @@ fig = px.bar_polar(viz_query, theta='metrics', r='score', range_r=[0.0,1.0], hov
 fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_gridcolor="#e3ecf6", polar= dict(radialaxis= dict(showticklabels= False)), hovermode="x")
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
-
-
 
 # create drop-down menu to display definitions for each metric
 
