@@ -31,10 +31,7 @@ secret = '2a755cb04a18406b9394dbef2f8069dd'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-# establish SQL Server connection
-
-
-# read data from parquet file
+# read data from parquet files
 
 source1 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks1.parquet.gzip")
 source2 = pd.read_parquet("Fall-2022-Club-Project/Example/Data Sources/tracks2.parquet.gzip")
@@ -55,7 +52,7 @@ query = pd.concat([source1, source2, source3, source4, source5, source6, source7
 
 # create metrics for analysis
 
-query2 = pd.melt(query, id_vars=['uri'], var_name='metrics', value_name='score', value_vars=['instrumentalness', 'danceability', 'energy', 'acousticness', 'valence', 'liveness', 'tempo'])
+query2 = pd.melt(query, id_vars=['uri'], var_name='metrics', value_name='score', value_vars=['instrumentalness', 'danceability', 'energy', 'acousticness', 'valence', 'liveness'])
 
 
 
@@ -164,8 +161,7 @@ fig = fig.update_layout(polar_radialaxis_gridcolor="#e3ecf6", polar_angularaxis_
 fig = fig.update_traces(hovertemplate="<b>Metric: %{theta}<br>Score: %{r}</b>", hoverlabel= dict(bgcolor="#ffffff"))
 st.plotly_chart(fig)
 
-# create BANS for data visualiztion
-print(viz_query['tempo'])
+
 
 # create drop-down menu to display definitions for each metric
 
