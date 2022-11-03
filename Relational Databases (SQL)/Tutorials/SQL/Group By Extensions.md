@@ -91,4 +91,4 @@
                NULL  |      NULL  |      28500  *This row displays the third level of detail
 ## Next Steps
 ### Now that you know the analytical potential of SQL, let's take a deep dive into how developers use SQL to complete Data Science and Engineering tasks:
-- [Windowing Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Windowing%20Functions.md)
+- [Windowing Functions](https://github.com/uvudataclub2022/UVU-2022-2023/blob/Data-Analytics/Relational%20Databases%20(SQL)/Tutorials/SQL/Window%20Functions.md)
