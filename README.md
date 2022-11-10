@@ -1,5 +1,5 @@
-# Welcome to the _Data Analytics_ Branch!
-#### This branch will house all data sources, output files, and dashboard templates used by the Data Analytics Team on the Spotify Playlist Song Recommendation App Project.
+# Welcome to the _Main_ Branch!
+#### This will be the primary branch for all input files, data pipelines, source code, and documentation for the Spotify Playlist Song Recommendation App to be completed during the Spring 2023 semester.
 ####
-#### Team Leader: Chase Pattee
-#### Team Members: TBD
+#### Team Leaders: Chase Pattee and Jacob Banuelos
+#### Members: Dongwook Kim, Ethan Muhlstein, Chad Articulo Adison
