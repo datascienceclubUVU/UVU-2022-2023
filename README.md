@@ -3,4 +3,4 @@
 #### This branch will house all data sources, output files, and dashboard templates used by the Data Engineering Team on the Spotify Playlist Song Recommendation App Project.
 ####
 #### Team Leader: Chase Pattee
-#### Team Members: TBD
+#### Team Members: Dongook Kim
