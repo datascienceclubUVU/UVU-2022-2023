@@ -3,11 +3,8 @@
 ####
 #### Team Leaders: Chase Pattee and Jacob Banuelos
 #### Members:
-  * Gilim Woo
   * Dongwook Kim
   * Fischer Wells
-  * Simon Smith
-  * Spencer Thompson
   * Chris Warburton
   * Danny Razo
   * Chad Articulo
@@ -16,5 +13,4 @@
   * Isaiah Catimpo
   * Tim Matthews
   * Ellen Wynn
-  * Ethan Muhlstein
   * Josue Sinaca
