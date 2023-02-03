@@ -6,7 +6,7 @@
 
 WITH album_count AS (
     SELECT album_uri, COUNT(*) AS num_occurrences, SUM(duration_ms) AS album_duration_ms
-    FROM spotify.master
+    FROM {{ source('core', 'master') }}
     GROUP BY album_uri
 ),
 

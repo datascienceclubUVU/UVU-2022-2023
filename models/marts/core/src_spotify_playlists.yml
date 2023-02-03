@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: core
+    description: a clone of a Postgres application database.
+    database: dbtworkshop
+    schema: spotify
+    tables:
+      - name: master
+        description: raw playlist tracks data
+        columns:
+          name: added_at
+          description: The date and time the track or episode was added.

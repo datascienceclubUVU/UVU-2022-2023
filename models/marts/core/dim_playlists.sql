@@ -6,19 +6,19 @@
 
 WITH track_count AS (
     SELECT playlist_uri, COUNT(track_uri) AS num_tracks
-    FROM spotify.master
+    FROM {{ source('core', 'master') }}
     GROUP BY playlist_uri
 ),
 
 album_count AS (
     SELECT playlist_uri, COUNT(album_uri) AS num_albums
-    FROM spotify.master
+    FROM {{ source('core', 'master') }}
     GROUP BY playlist_uri
 ),
 
 playlist_duration AS (
     SELECT playlist_uri, SUM(duration_ms) AS playlist_duration_ms
-    FROM spotify.master
+    FROM {{ source('core', 'master')}}
     GROUP BY playlist_uri
 ),
 

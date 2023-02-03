@@ -6,7 +6,7 @@
 
 WITH track_count AS (
     SELECT track_uri, COUNT(*) AS num_occurrences
-    FROM spotify.master
+    FROM {{ source('core', 'master')}}
     GROUP BY track_uri
 ),
 
