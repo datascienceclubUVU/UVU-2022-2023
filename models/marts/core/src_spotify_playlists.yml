@@ -9,5 +9,153 @@ sources:
       - name: master
         description: raw playlist tracks data
         columns:
+          - name: rowid
+            description: primary key. unique identifier for each row in the master dataset.
           - name: added_at
             description: The date and time the track or episode was added.
+          - name: is_local
+            description: Identifies whether the playlist is a local file or not.
+          - name: primary_color_x
+            description: placeholder
+          - name: added_by_external_urls_spotify
+            description: The Spotify URL for the user.
+          - name: added_by_href
+            description: A link to the Web API endpoint for this user.
+          - name: added_by_id
+            description: The Spotify user ID for this user.
+          - name: added_by_type
+            description: The object type. Allowed values [user]
+          - name: added_by_uri
+            description: The Spotify URI for this user.
+          - name: track_album_album_type
+            description: The type of the album. Allowed values ["album", "single", "compilation"]
+          - name: track_album_external_urls_spotify
+            description: The Spotify URL for this album.
+          - name: track_album_href
+            description: A link to the Web API endpoint providing full details of the album.
+          - name: track_album_id
+            description: The Spotify ID for the album.
+          - name: album_name
+            description: The name of the album. In case of an album takedown, the value may be an empty string.
+          - name: release_date
+            description: The date the album was first released.
+          - name: track_album_release_date_precision
+            description: The precision with which release_date value is known. Allowed values ["year", "month", "day"]
+          - name: track_album_total_tracks
+            description: The number of tracks in the album.
+          - name: track_album_type
+            description: The type of album the track is on. Allowed values ["album", "single", "compilation"]
+          - name: album_uri
+            description: The Spotify URI for the album.
+          - name: track_disc_number
+            description: The disc number (usually 1 unless the album consists of more than one disc).
+          - name: duration_ms
+            description: The track length in milliseconds.
+          - name: track_episode
+            description: Identifies whether or not the track is an episode.
+          - name: isexplicit
+            description: Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+          - name: track_external_ids_isrc
+            description: Track's International Standard Recording Code
+          - name: track_external_urls_spotify
+            description: The Spotify URL for the object.
+          - name: track_id
+            description: The Spotify ID for the track.
+          - name: track_is_local
+            description: Identifies whether or not the track is from a local file.
+          - name: track_name
+            description: The name of the track.
+          - name: track_popularity
+            description: The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note (the popularity value may lag actual popularity by a few days; the value is not updated in real time.)
+          - name: track_preview_url
+            description: A link to a 30 second preview (MP3 format) of the track. Can be null.
+          - name: track_track
+            description: placeholder
+          - name: track_track_number
+            description: The number of the track. If an album has several discs, the track number is the number on the specified disc.
+          - name: track_type
+            description: The object type ["track"]. Allowed value ["track"].
+          - name: track_uri
+            description: The Spotify URI for the track.
+          - name: video_thumbnail_url
+            description: placeholder
+          - name: playlist_uri
+            description: The Spotify URI for the playlist.
+          - name: collaborative
+            description: true if the owner allows other users to modify the playlist.
+          - name: description
+            description: The playlist description. Only returned for modified, verified playlists, otherwise null.
+          - name: href
+            description: A link to the Web API endpoint providing full details of the playlist.
+          - name: id
+            description: The Spotify ID for the playlist.
+          - name: playlist_name
+            description: The name of the playlist.
+          - name: primary_color_y
+            description: placeholder
+          - name: public
+            description: The playlist's public/private status (true the playlist is public, false the playlist is private, null the playlist status is not relevant).
+          - name: snapshot_id
+            description: The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version.
+          - name: type
+            description: The object type ["playlist"]
+          - name: uri
+            description: The Spotify URI for the playlist.
+          - name: external_urls_spotify
+            description: The Spotify URL for the playlist.
+          - name: followers_href
+            description: This will always be set to null, as the Web API does not support it at the moment.
+          - name: followers_total
+            description: The total number of followers.
+          - name: owner_display_name
+            description: The name displayed on the user's profile. null if not available.
+          - name: owner_external_urls_spotify
+            description: The Spotify URL for the owner.
+          - name: owner_href
+            description: A link to the Web API endpoint for the owner.
+          - name: owner_id
+            description: The Spotify user ID for the owner.
+          - name: owner_type
+            description: The object type. Allowed value ["user"]
+          - name: owner_uri
+            description: The Spotify URI for the owner.
+          - name: tracks_href
+            description: A link to the Web API endpoint returning the full result of the request
+          - name: tracks_limit
+            description: The maximum number of items in the response (as set in the query or by default).
+          - name: tracks_next
+            description: URL to the next page of items. (null if none).
+          - name: tracks_offset
+            description: The offset of the items returned (as set in the query or by default)
+          - name: tracks_previous
+            description: URL to the previous page of items. ( null if none)
+          - name: tracks_total
+            description: The total number of items available to return.
+          - name: track
+            description: placeholder
+          - name: video_thumbnail
+            description: placeholder
+          - name: danceability
+            description: Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.
+          - name: energy
+            description: Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+          - name: key
+            description: The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.
+          - name: loudness
+            description: The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typically range between -60 and 0 db.
+          - name: mode
+            description: Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+          - name: speechiness
+            description: Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words.
+          - name: acousticness
+            description: A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.
+          - name: instrumentalness
+            description: Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly "vocal". The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content.
+          - name: liveness
+            description: Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live.
+          - name: valence
+            description: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
+          - name: tempo
+            description: The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+          - name: time_signature
+            description: An estimated time signature. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure). The time signature ranges from 3 to 7 indicating time signatures of "3/4", to "7/4".

@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_albums
+    description: one unique album per row
+    columns:
+      - name: album_uri
+        description: primary key. unique identifier for each album.
+        tests:
+          - unique
+          - not_null
+      - name: album_name
+        description: name of album.
+      - name: album_name
+        description: name of album.
+      - name: release_date
+        description: identifies the date the album was released.
+      - name: num_tracks
+        description: total number of tracks in the album.
+      - name: num_occurrences
+        description: identifies the number of times the album occurs in the entire dataset.
+      - name: album_duration_ms
+        description: identifies the album's duration, measured in milliseconds.
+      - name: avg_danceability
+        description: average score of the danceability measure. "Danceability" describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity.
+      - name: avg_energy
+        description: average score of the energy measure. "Energy" is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+      - name: avg_loudness
+        description: average score of the loudness measure. "Loudness" measures how loud a track appears to be. Values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Measured in decibels.
+      - name: avg_acousticness_probability
+        description: average probability score of the acousticness measure. "Acousticness" is a confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.
+      - name: avg_speechiness_probability
+        description: average probability score of the speechiness measure. "Speeechiness" is a measure from 0.0 to 1.0 to predict how much of the track includes lyrics. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value.
+      - name: most_common_key
+        description: most common key found in each album. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.
+      - name: most_common_mode
+        description: most common mode found in each album. Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+      - name: avg_valence
+        description: average score for the valence measure. "Valence" describes the overall tone of the track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
+      - name: avg_tempo
+        description: average score for the tempo measure. The overall estimated tempo of a album in beats per minute (BPM).
