@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='table'
+    )
+}}
+
 WITH track_count AS (
     SELECT playlist_uri, COUNT(track_uri) AS num_tracks
     FROM spotify.master

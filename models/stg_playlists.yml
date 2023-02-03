@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: dim_playlists
+    description: one unique playlist per row
+    columns:
+      - name: playlist_uri
+        description: primary key. unique identifier for each playlist
+        tests:
+          - unique
+          - not_null
+      - name: playlist_name
+        description: name of playlist
+      - name: owner_display_name
+        description: display name of playlist's owner
