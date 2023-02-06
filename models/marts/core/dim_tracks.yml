@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_tracks
+    description: one unique track per row
+    columns:
+      - name: track_uri
+        description: primary key. unique identifier for each track.
+        tests:
+          - unique
+          - not_null
+      - name: track_name
+        description: name of track.
+      - name: album_name
+        description: name of album.
+      - name: track_type
+        description: determines whether the track is a single, part of an album, or a compilation of songs.
+      - name: release_date
+        description: identifies the date the album was released.
+      - name: isexplicit
+        description: identifies whether or not the track is explicit.
+      - name: track_duration_ms
+        description: identifies the track's duration, measured in milliseconds.
+      - name: track_preview_url
+        description: internal spotify url to preview the track's audio (Use this in audio preview feature in Streamlit).
+      - name: num_occurrences
+        description: identifies the number of times the track occurs in the entire dataset.
+      - name: danceability
+        description: This describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity.
+      - name: energy
+        description: This is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+      - name: loudness
+        description: This measures how loud a track appears to be. Values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Measured in decibels.
+      - name: acousticness
+        description: This is a confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.
+      - name: speechiness
+        description: This is a measure from 0.0 to 1.0 to predict how much of the track includes lyrics. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value.
+      - name: liveness
+        description: This is a confidence measure from 0.0 to 1.0 of whether the track was performed live. Higher liveness values represent an increased probability that the track was performed live.
+      - name: key
+        description: most common key found in each playlist. The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.
+      - name: mode
+        description: most common mode found in each playlist. Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
+      - name: valence
+        description: Valence describes the overall tone of the track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
+      - name: tempo
+        description: The overall estimated tempo of a track in beats per minute (BPM).
