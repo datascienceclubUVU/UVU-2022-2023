@@ -1,6 +1,17 @@
-# Welcome to the _Data Engineering_ Branch!
 
-#### This branch will house all data sources, output files, and dashboard templates used by the Data Engineering Team on the Spotify Playlist Song Recommendation App Project.
+# Welcome to the _Main_ Branch!
+#### This will be the primary branch for all input files, data pipelines, source code, and documentation for the Spotify Playlist Song Recommendation App to be completed during the Spring 2023 semester.
 ####
-#### Team Leader: Chase Pattee
-#### Team Members: Dongook Kim
+#### Team Leaders: Chase Pattee and Jacob Banuelos
+#### Members:
+  * Dongwook Kim
+  * Fischer Wells
+  * Chris Warburton
+  * Danny Razo
+  * Chad Articulo
+  * Samuel Whitlock
+  * Angelica Rodriguez
+  * Isaiah Catimpo
+  * Tim Matthews
+  * Ellen Wynn
+  * Josue Sinaca
