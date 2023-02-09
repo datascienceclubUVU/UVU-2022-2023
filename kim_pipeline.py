@@ -41,19 +41,13 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials, requests_tim
 
 host_name = 'localhost'
 database_name = 'Spotify'
-engine = sql.create_engine('postgresql+psycopg2://postgres:DataNerd2023!!\
-@localhost/Spotify')
+engine = sql.create_engine('postgresql+psycopg2://postgres:postgres\
+@localhost/spotify')
 
 # load training data
 data = pd.read_csv('distinct_playlists.csv')[['playlist_uri', 'playlist_name']]
 data['playlist_uri'] = data['playlist_uri'].str.strip()
 
-data2 = pd.read_sql('SELECT DISTINCT playlist_uri FROM playlist_tracks', engine)
-
-outer = data.merge(data2, how='outer', indicator=True)
-anti_join = outer[(outer._merge=='left_only')].drop('_merge', axis=1)
-
-data = pd.DataFrame(anti_join)
 data = data[0:50]
 
 test_list = []
@@ -98,14 +92,11 @@ for track in tqdm(df):
         base_list.append(df2)
     except:
         pass
-df2 = pd.concat(base_list)
 
 
 tracks_df = pd.read_sql('''SELECT DISTINCT track_uri FROM playlist_tracks ORDER BY track_uri''', engine)
 outer = tracks_df.merge(test_list, how='outer', indicator=True)
 anti_join = outer[(outer._merge=='left_only')].drop('_merge', axis=1)
-df = pd.DataFrame(anti_join)
-df = pd.Series(df['track_uri'])
 base_list = []
 for track in tqdm(df):
     try:
@@ -115,4 +106,3 @@ for track in tqdm(df):
         base_list.append(df3)
     except:
         pass
-df3 = pd.concat(base_list)
