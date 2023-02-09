@@ -6,18 +6,18 @@ sources:
     database: dbtworkshop
     schema: public
     tables:
-      name: fact_playlist_tracks
-      description: one row is one track added to a playlist by a user.
-      columns:
-        - name: playlist_uri
-          description: primary key (composite key). unique identifier for each playlist. Foreign key that references dim_playlists.
-        - name: track_uri
-          description: primary key (composite key). unique identifier for each track. Foreign key that references dim_tracks.
-        - name: album_uri
-          description: foreign key that references dim_albums.
-        - name: added_at
-          description: date at which the track was added to the playlist.
-        - name: added_by_uri
-          description: the uri of the user who added the track to the playlist.
-        - name: owner_uri
-          description: foreign key that references dim_users.
+      - name: fact_playlist_tracks
+        description: one row is one track added to a playlist by a user.
+        columns:
+          - name: playlist_uri
+            description: primary key (composite key). unique identifier for each playlist. Foreign key that references dim_playlists.
+          - name: track_uri
+            description: primary key (composite key). unique identifier for each track. Foreign key that references dim_tracks.
+          - name: album_uri
+            description: foreign key that references dim_albums.
+          - name: added_at
+            description: date at which the track was added to the playlist.
+          - name: added_by_uri
+            description: the uri of the user who added the track to the playlist.
+          - name: owner_uri
+            description: foreign key that references dim_users.
