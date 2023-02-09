@@ -17,25 +17,8 @@ models:
         description: total number of tracks in each playlist
       - name: num_albums
         description: total number of albums in each playlist
-      - name: playlist_duration_ms
+      - name: followers_total
+        description: total number of followers.
+      - name: total_duration
         description: total playlist duration measued in miliseconds.
-      - name: avg_danceability
-        description: average score of the danceability measure. Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity.
-      - name: avg_energy
-        description: average score of the energy measure. Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
-      - name: avg_loudness
-        description: average score of the loudness measure. Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Measured in decibels.
-      - name: avg_acousticness_probability
-        description: average probability that the track is acoustic. This is a confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.
-      - name: most_common_key
-        description: most common key found in each playlist. The key the track is in. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.
-      - name: most_common_mode
-        description: most common mode found in each playlist. Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.
-      - name: avg_speechiness_probability
-        description: average probability that the track has lyrics. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value.
-      - name: avg_liveness_probability
-        description: average probability that the track was performed live. Higher liveness values represent an increased probability that the track was performed live.
-      - name: avg_valence
-        description: average score of the valence measure. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
-      - name: avg_tempo
-        description: average score of the tempo measure. The overall estimated tempo of a track in beats per minute (BPM).
+      

@@ -4,15 +4,31 @@
     )
 }}
 
-WITH final AS (
-    SELECT DISTINCT sm.playlist_uri, playlist_name, owner_display_name, num_tracks, num_albums, playlist_duration_ms, 
-    avg_danceability, avg_energy, avg_loudness, avg_acousticness_probability, most_common_key, most_common_mode,
-    avg_speechiness_probability, avg_liveness_probability, avg_valence, avg_tempo
-    FROM spotify.master sm
+WITH track_count AS (
+    SELECT DISTINCT playlist_uri, COUNT(track_uri) AS num_tracks
+    FROM {{ source('core', 'fact_playlist_tracks') }}
+    GROUP BY playlist_uri
+),
+
+album_count AS (
+    SELECT DISTINCT playlist_uri, COUNT(album_uri) AS num_albums
+    FROM {{ source('core', 'fact_playlist_tracks')}}
+    GROUP BY playlist_uri
+),
+
+duration AS (
+    SELECT DISTINCT playlist_uri, SUM(duration_ms) AS total_duration
+    FROM {{ source('core', 'master') }}
+    GROUP BY playlist_uri
+),
+
+final AS (
+    SELECT DISTINCT sm.playlist_uri, playlist_name, owner_display_name, num_tracks, num_albums, 
+    followers_total, total_duration
+    FROM {{ source('core', 'master') }} sm
     JOIN track_count tc ON sm.playlist_uri = tc.playlist_uri
     JOIN album_count ac ON sm.playlist_uri = ac.playlist_uri
-    JOIN playlist_duration pd ON sm.playlist_uri = pd.playlist_uri
-    JOIN audio_features af ON sm.playlist_uri = af.playlist_uri
+    JOIN duration d ON sm.playlist_uri = d.playlist_uri
 )
 
 SELECT * FROM final
