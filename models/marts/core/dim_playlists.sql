@@ -23,8 +23,8 @@ duration AS (
 ),
 
 final AS (
-    SELECT DISTINCT sm.playlist_uri, playlist_name, owner_display_name, num_tracks, num_albums, 
-    followers_total, total_duration
+    SELECT DISTINCT sm.playlist_uri, playlist_name, owner_display_name, collaborative, description, 
+    num_tracks, num_albums, followers_total, total_duration
     FROM {{ source('core', 'master') }} sm
     JOIN track_count tc ON sm.playlist_uri = tc.playlist_uri
     JOIN album_count ac ON sm.playlist_uri = ac.playlist_uri

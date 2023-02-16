@@ -11,9 +11,10 @@ WITH track_count AS (
 ),
 
 final AS (
-    SELECT DISTINCT tc.track_uri, track_name, album_name, track_album_album_type AS track_type, release_date,
-        "isExplicit", duration_ms AS track_duration_ms, track_preview_url, tc.num_occurrences,
-        danceability, energy, loudness, acousticness, speechiness, liveness, key, mode, valence, tempo
+    SELECT DISTINCT tc.track_uri, track_name, artist1, artist2, artist3, artist4, artist5, album_name, 
+    track_album_album_type AS track_type, release_date, "isExplicit", duration_ms AS track_duration_ms, 
+    track_popularity AS popularity_rating, track_preview_url, tc.num_occurrences, danceability, energy, 
+    loudness, acousticness, speechiness, liveness, key, mode, valence, tempo, time_signature
     FROM {{ source('core', 'master') }} sm
     JOIN track_count tc ON sm.track_uri = tc.track_uri
 )

@@ -20,7 +20,8 @@ audio_features AS (
 ),
 
 final AS (
-    SELECT DISTINCT sm.album_uri, album_name, release_date, track_album_total_tracks AS num_tracks,
+    SELECT DISTINCT ROW_NUMBER() OVER(PARTITION BY sm.album_uri ORDER BY sm.album_uri) row_num, sm.album_uri, album_name, 
+    artist1, artist2, artist3, release_date, track_album_total_tracks AS num_tracks,
         num_occurrences, album_duration_ms, avg_danceability, avg_energy, avg_loudness,
         avg_acousticness_probability, avg_speechiness_probability, most_common_key, most_common_mode,
         avg_valence, avg_tempo
@@ -29,4 +30,7 @@ final AS (
     JOIN audio_features af ON sm.album_uri = af.album_uri
 )
 
-SELECT * FROM final
+SELECT album_uri, album_name, artist1, artist2, artist3, release_date, num_tracks, 
+num_occurrences, album_duration_ms, avg_danceability, avg_energy, avg_loudness, avg_acousticness_probability,
+avg_speechiness_probability, most_common_key, most_common_mode, avg_valence, avg_tempo
+FROM final WHERE row_num = 1
