@@ -9,50 +9,28 @@ sources:
       - name: master
         description: raw playlist tracks data
         columns:
-          - 
           - name: added_at
             description: The date and time the track or episode was added.
-          - 
-          - 
-          - 
-          -
-          - 
-          - 
           - name: added_by_uri
             description: The Spotify URI for this user.
-          - 
-          - 
-          - 
-          - 
           - name: album_name
             description: The name of the album. In case of an album takedown, the value may be an empty string.
           - name: release_date
             description: The date the album was first released.
-          - 
           - name: track_album_total_tracks
             description: The number of tracks in the album.
-          - 
           - name: album_uri
             description: The Spotify URI for the album.
-          - 
           - name: duration_ms
             description: The track length in milliseconds.
-          - 
           - name: isexplicit
             description: Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
-          - 
-          - 
-          -
-          - 
           - name: track_name
             description: The name of the track.
           - name: track_popularity
             description: The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note (the popularity value may lag actual popularity by a few days; the value is not updated in real time.)
           - name: track_preview_url
             description: A link to a 30 second preview (MP3 format) of the track. Can be null.
-          - 
-          - 
-          - 
           - name: track_uri
             description: The Spotify URI for the track.
           - name: video_thumbnail_url
@@ -63,35 +41,14 @@ sources:
             description: true if the owner allows other users to modify the playlist.
           - name: description
             description: The playlist description. Only returned for modified, verified playlists, otherwise null.
-          - 
-          - 
           - name: playlist_name
             description: The name of the playlist.
-          - 
-          - 
-          - 
-          - 
-          - 
-          - 
-          - 
           - name: followers_total
             description: The total number of followers.
           - name: owner_display_name
             description: The name displayed on the user's profile. null if not available.
-          - 
-          - 
-          - 
-          - 
           - name: owner_uri
             description: The Spotify URI for the owner.
-          - 
-          -
-          -
-          - 
-          - 
-          - 
-          - 
-          - 
           - name: danceability
             description: Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.
           - name: energy
