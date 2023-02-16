@@ -3,7 +3,6 @@
 from spotipy import SpotifyClientCredentials
 import spotipy
 import sqlalchemy as sql
-import psycopg2
 
 # Import all data manipulation libraries
 
@@ -11,7 +10,7 @@ import pandas as pd
 from pandarallel import pandarallel
 import numpy as np
 from tqdm import tqdm
-import multiprocessing
+import concurrent.futures
 pandarallel.initialize(verbose=0, nb_workers=8)
 
 from functools import lru_cache
@@ -56,7 +55,7 @@ outer = new_batch.merge(db_query, how='outer', indicator=True)
 anti_join = outer[(outer._merge=='left_only')].drop('_merge', axis=1)
 
 new_batch = pd.DataFrame(anti_join)
-new_batch = new_batch[0:50]
+new_batch = new_batch[0:5]
 
 def iterate_playlists():
     load_batch = []
