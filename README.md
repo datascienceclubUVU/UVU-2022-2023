@@ -12,6 +12,5 @@
   * Samuel Whitlock
   * Angelica Rodriguez
   * Isaiah Catimpo
-  * Tim Matthews
   * Ellen Wynn
   * Josue Sinaca
