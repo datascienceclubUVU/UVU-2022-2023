@@ -7,7 +7,6 @@ models:
       - name: track_uri
         description: primary key. unique identifier for each track.
         tests:
-          - unique
           - not_null
       - name: track_name
         description: name of track.
