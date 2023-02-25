@@ -11,6 +11,5 @@
   * Chad Articulo
   * Samuel Whitlock
   * Angelica Rodriguez
-  * Isaiah Catimpo
   * Ellen Wynn
   * Josue Sinaca
