@@ -8,8 +8,6 @@
   * Fischer Wells
   * Chris Warburton
   * Danny Razo
-  * Chad Articulo
   * Samuel Whitlock
-  * Angelica Rodriguez
   * Ellen Wynn
   * Josue Sinaca
