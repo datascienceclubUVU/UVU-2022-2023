@@ -1,4 +1,9 @@
-
 target/
 dbt_packages/
 logs/
+
+# Ignore editor settings for VS Code.
+.vscode
+
+# Ignore all virtual environments.
+venv
