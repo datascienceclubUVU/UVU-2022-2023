@@ -8,3 +8,6 @@ logs/
 # Ignore virtual environments.
 venv
 env
+
+# Ignore OS files.
+.DS_Store
