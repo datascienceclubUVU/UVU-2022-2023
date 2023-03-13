@@ -65,7 +65,14 @@ new_batch = spark.read.csv("distinct_playlists.csv", header=True, inferSchema=Tr
 new_batch = new_batch.withColumn("playlist_uri", col("playlist_uri").trim())
 
 # Load the playlist_uris already in the database
-db_batch = spark.read.csv("db_playlist_uris.csv", header=True, inferSchema=True).select("playlist_uri")
+db_batch = spark.read.jdbc(
+    url="jdbc:postgresql://localhost:5432/spotify",
+    table="playlist_uris",
+    properties={
+        "user": "postgres",
+        "password": "password"
+    }
+).select("playlist_uri")
 
 # Filter out the playlists that are already in the database
 new_batch = new_batch.join(db_batch, on="playlist_uri", how="leftanti")
