@@ -70,7 +70,7 @@ db_batch = spark.read.jdbc(
     table="playlist_uris",
     properties={
         "user": "postgres",
-        "password": "password"
+        "password": "DataNerd2023!!"
     }
 ).select("playlist_uri")
 
