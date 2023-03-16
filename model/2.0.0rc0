@@ -1,0 +1,5 @@
+Requirement already satisfied: pandas in c:\users\jacob\appdata\local\programs\python\python310\lib\site-packages (1.4.1)
+Requirement already satisfied: numpy>=1.21.0 in c:\users\jacob\appdata\local\programs\python\python310\lib\site-packages (from pandas) (1.22.3)
+Requirement already satisfied: pytz>=2020.1 in c:\users\jacob\appdata\local\programs\python\python310\lib\site-packages (from pandas) (2021.3)
+Requirement already satisfied: python-dateutil>=2.8.1 in c:\users\jacob\appdata\local\programs\python\python310\lib\site-packages (from pandas) (2.8.2)
+Requirement already satisfied: six>=1.5 in c:\users\jacob\appdata\local\programs\python\python310\lib\site-packages (from python-dateutil>=2.8.1->pandas) (1.16.0)
