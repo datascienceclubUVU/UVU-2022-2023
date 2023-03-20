@@ -10,4 +10,3 @@
   * Danny Razo
   * Samuel Whitlock
   * Ellen Wynn
-  * Josue Sinaca
