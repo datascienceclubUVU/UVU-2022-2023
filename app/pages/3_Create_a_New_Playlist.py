@@ -1,4 +1,6 @@
 import streamlit as st
+import spotipy
+from spotipy import SpotifyClientCredentials
 import os
 
 st.set_page_config(page_title="Create a Playlist", page_icon="📈")
@@ -20,3 +22,6 @@ st.write(
 
 client_id = os.getenv('SPOTIPY_CLIENT_ID')
 client_secret = os.getenv('SPOTIPY_CLIENT_SECRET')
+
+client_credentials = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials, requests_timeout=15)
