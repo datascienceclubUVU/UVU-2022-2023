@@ -1,5 +1,6 @@
 import streamlit as st
 import spotipy
+import pandas as pd
 from spotipy import SpotifyClientCredentials
 from spotipy import SpotifyOauthError, SpotifyStateError, SpotifyException
 import re
@@ -35,12 +36,22 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials, requests_tim
 
 
 # Idea of this pipeline is to allow a user to paste in the URL for their playlist and extract the playlist URI
-pl = 'https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=239973d3db4d41ce&pt=03042c4e3c2399a6889c1b8573e04052'
+# pl = 'https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=239973d3db4d41ce&pt=03042c4e3c2399a6889c1b8573e04052'
+pl = st.text_input(label="Please enter playlist URL:",value='https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=a3f654b6db204ca6')
 x= re.split('\/|\?',pl)
 playlist_id = x[4]
 
 try:
     playlist = sp.playlist(playlist_id=playlist_id)
-    print(playlist)
+    playlist_info = sp.playlist_tracks(playlist_id=playlist_id)['items']
+    playlist_img = sp.playlist_cover_image(playlist_id=playlist_id)
+    st.image(playlist_img[0]['url'])
+    # used to pull track info
+    # sp.audio_features
+    df = pd.json_normalize(playlist_info)
+    df = df.drop(columns=['track.available_markets'])
+    df.to_csv('df_out.csv')
+    df2 = pd.json_normalize(playlist)
+    df2.to_csv('df2_out.csv')
 except SpotifyException:
-    print("That playlist does not exist or is private. Try again.")
+    st.write("That playlist does not exist or is private. Try again.")
