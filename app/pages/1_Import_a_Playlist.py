@@ -39,12 +39,16 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials, requests_tim
 # pl = 'https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=239973d3db4d41ce&pt=03042c4e3c2399a6889c1b8573e04052'
 # C&C - https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=a3f654b6db204ca6
 # Crabs - https://open.spotify.com/playlist/1ZAo2hHlDWcCNNobChKp0D?si=56958c737d694edb
-pl = st.text_input(label="Please enter playlist URL:",value='https://open.spotify.com/playlist/1ZAo2hHlDWcCNNobChKp0D?si=56958c737d694edb')
+pl = st.text_input(label="Please enter playlist URL:",value='https://open.spotify.com/playlist/4xjKk78zyTBjWzGjZ0HfDk?si=a3f654b6db204ca6')
 x= re.split('\/|\?',pl)
 playlist_id = x[4]
 
 try:
     playlist = sp.playlist(playlist_id=playlist_id)
+    while playlist['tracks']['next']:
+        results = sp.next(playlist['tracks'])
+        playlist['tracks']['items'].extend(results['items'])
+        playlist['tracks']['next'] = results['next']
     playlist_image = playlist['images'][0]['url']
     playlist_name = playlist['name']
     playlist_description = ['description']
@@ -67,7 +71,7 @@ try:
         track_dict['valence'] = audio_features[0]['valence']
         track_dict['tempo'] = audio_features[0]['tempo']
         tracks.append(track_dict)
-    print(tracks)
+    print(len(tracks))
     st.image(playlist_image)
 
 except SpotifyException:
