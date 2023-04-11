@@ -71,7 +71,6 @@ try:
         track_uris.append(track_dict['track_uri'])
     audio_features = []
     calls = math.ceil(len(track_uris) / 100)
-    print(calls)
     for x in range(calls):
         if len(track_uris) > 100:
             uri_sublist = track_uris[:100]
@@ -87,8 +86,6 @@ try:
         track['instrumentalness'] = audio['instrumentalness']
         track['valence'] = audio['valence']
         track['tempo'] = audio['tempo']
-    
-    print(tracks[0])
 
     st.image(playlist_image)
 
