@@ -20,6 +20,14 @@ st.write(
 st.header("Imported Playlist")
 user_playlist = st.text_input("Playlist URL: ")
 
+playlist_image, playlist_title = st.columns(2)
+
+with playlist_image:
+   st.image('https://static.wikia.nocookie.net/mariokart/images/4/4c/Mario_mario_kart_8_deluxe.png/revision/latest/scale-to-width-down/1000?cb=20170429081902')
+
+with playlist_title:
+   st.subheader("Playlist Title")
+
 temp_dataframe = pd.DataFrame(columns=["Track", "Artist", "Album", "Length"])
 st.dataframe(temp_dataframe)
 
