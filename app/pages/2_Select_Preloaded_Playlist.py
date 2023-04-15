@@ -103,8 +103,7 @@ st.button(
         playlist when clicked.
         """
     ),
-    type="primary",
-    use_container_width=True
+    type="primary"
 )
 
 st.markdown("---")
