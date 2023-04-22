@@ -3,6 +3,7 @@ from st_aggrid import *
 import pandas as pd
 import plotly.express as px
 import plotly as pl
+import duckdb as ddb
 
 # Page configuration.
 st.set_page_config(
@@ -36,6 +37,31 @@ st.markdown("---")
 
 # "Select Playlist" dropdown.
 st.header("Select Playlist")
+
+
+##################### DuckDB example. #####################
+
+# Path of parquet files that will be used as table.
+playlist_preview_path = "data/playlist_preview/playlist_preview_?.parquet.gzip"
+# Name of variable that holds the DuckDB relation (table).
+playlist_preview_table = "playlist_preview"
+# Read parquet files into a DuckDB relation (table) that can then be queried.
+playlist_preview = ddb.read_parquet(playlist_preview_path)
+
+# Example of how to do a query and get the results as a DataFrame.
+playlist_uri = "3I8HGNsE2m65GaXwsarwJy"
+my_df = ddb.sql(
+    f"""
+    SELECT *
+    FROM {playlist_preview_table}
+    WHERE playlist_uri = '{playlist_uri}'
+    """
+).df()
+
+my_df
+
+###########################################################
+
 
 preloaded_playlist = st.selectbox(
     label="Preloaded Playlists:",
